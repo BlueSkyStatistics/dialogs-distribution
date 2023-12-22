@@ -2,9 +2,25 @@
     "name": "@BlueSkyStatistics/dialogs/distribution",
     "productName": "Distribution dialogs",
     "description": "BlueSky Statistics Distribution dialogs",
-    "keywords": [],
     "main": "nav.js",
     "version": "1.0.2",
+    "group": "dialogs",
+    "subscriptions": ["BASE (Free Forever)"],
+    "moduleMeta": {
+            "path": "{{locals}}/distribution.asar",
+            "storage": "firebase",
+            "update": "auto",
+            "artifactType": "asar",
+            "extra": {
+                "sourceType": "release",
+                "remote": "BlueSkyStatistics/dialogs-distribution"
+            },
+            "removable": true
+    },
+    "minBSkyVersion": null,
+    "minAppVersion": null,
+    "requiredPackages": [],
+    "keywords": [],
     "author": "BlueSky Statistics",
     "scripts": {},
     "dependencies": {
