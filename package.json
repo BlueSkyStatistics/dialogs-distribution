@@ -3,7 +3,7 @@
     "productName": "Distribution dialogs",
     "description": "BlueSky Statistics Distribution dialogs",
     "main": "nav.js",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "group": "dialogs",
     "subscriptions": ["BASE (Free Forever)"],
     "moduleMeta": {
