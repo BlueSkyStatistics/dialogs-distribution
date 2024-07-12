@@ -8,7 +8,12 @@ var localization = {
         sd: "Standard deviation",
         lblnoofsamples:  "Number of samples (rows)",
         lblnoofobsv: "Number of observations (columns)",
-        lblseed: "Seed",
+        
+		lbl1: "Randomization",
+		selectRandomSeedRad: "Auto generate Random seed (unique every time)",
+		selectFixedRandomSeedRad: "Choose as shown or manually change the following Random seed",
+		lblseed: "Seed for randomization",
+		
         lblAddtoDS: "Add to dataset",
         chklbl1:"Sample means",
         chklbl2:"Sample sums",
@@ -86,8 +91,6 @@ var localization = {
 }
 
 
-
-
 class sampleNormalDistribution extends baseModal {
     constructor() {
         var config = {
@@ -95,7 +98,11 @@ class sampleNormalDistribution extends baseModal {
             label: localization.en.title,
             modalType: "one",
             RCode: `
-            base::set.seed({{selected.seedval | safe}})
+			{{if(options.selected.gpbox1 === 'selectFixedRandomSeed')}}
+				base::set.seed({{selected.seedval | safe}})
+			{{#else}}
+				base::set.seed(BSkyGetRandomSeed())
+			{{/if}}
 
             {{selected.datasetname | safe}} <- as.data.frame(matrix( stats::rnorm({{selected.noofsamples | safe}}*{{selected.noofobsrv | safe}}, mean={{selected.mean | safe}}, sd={{selected.sd | safe}}), ncol={{selected.noofobsrv | safe}}))
             rownames({{selected.datasetname | safe}}) <- paste("sample", 1:{{selected.noofsamples | safe}}, sep='')
@@ -180,18 +187,41 @@ class sampleNormalDistribution extends baseModal {
                     extraction: "NoPrefix|UseComma"
                 })
             }, 
-            seedval: {
+			lbl1: { el: new labelVar(config, { label: localization.en.lbl1, style: "mt-2", h:6 }) },
+			selectRandomSeedRad: {
+                el: new radioButton(config, {
+                    label: localization.en.selectRandomSeedRad,
+                    no: "gpbox1",
+                    increment: "selectRandomSeedRad",
+                    value: "selectRandomSeed",
+                    state: "checked",
+					style: "ml-3",
+                    extraction: "ValueAsIs",
+                })
+            },
+			selectFixedRandomSeedRad: {
+                el: new radioButton(config, {
+                    label: localization.en.selectFixedRandomSeedRad,
+                    no: "gpbox1",
+                    increment: "selectFixedRandomSeedRad",
+                    value: "selectFixedRandomSeed",
+                    //state: "checked",
+					style: "ml-3",
+                    extraction: "ValueAsIs",
+                })
+            },
+			seedval: {
                 el: new inputSpinner(config, {
                     no: 'seedval',
                     label: localization.en.lblseed,
                     min: 1,
                     max: 9999999,
                     step: 1,
-                    style: "mt-3",                    
+                    style: "ml-5",                    
                     value: 12345,
                     extraction: "NoPrefix|UseComma"
                 })
-            },                         
+            },  
             labelAddToDs: { el: new labelVar(config, { label: localization.en.lblAddtoDS, style: "mt-3",h: 5 }) },
             smplmeans: { el: new checkbox(config, { label: localization.en.chklbl1, no: "smplmeans", state:"checked", extraction: "Boolean", newline: true }) },
             smplsums: { el: new checkbox(config, { label: localization.en.chklbl2, no: "smplsums", extraction: "Boolean", newline: true}) },
@@ -199,7 +229,11 @@ class sampleNormalDistribution extends baseModal {
         }
         const content = {
             items: [objects.datasetname.el.content, objects.mean.el.content, objects.sd.el.content, 
-                objects.noofsamples.el.content, objects.noofobsrv.el.content, objects.seedval.el.content,
+                objects.noofsamples.el.content, objects.noofobsrv.el.content, 
+				objects.lbl1.el.content,
+				objects.selectRandomSeedRad.el.content,
+				objects.selectFixedRandomSeedRad.el.content,
+				objects.seedval.el.content,
                 objects.labelAddToDs.el.content, objects.smplmeans.el.content, objects.smplsums.el.content, objects.smplsd.el.content
             ],
             nav: {
