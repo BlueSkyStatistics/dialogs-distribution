@@ -1,101 +1,17 @@
 
-var localization = {
-    en: {
-        title: "Sample from Uniform Distribution",
-        navigation: "Sample from Uniform Distribution",
-        entrdsname: "Enter name for dataset",
-        min: "Minimum",
-        max: "Maximum",
-        lblnoofsamples:  "Number of samples (rows)",
-        lblnoofobsv: "Number of observations (columns)",
-        lblseed: "Seed",
-        lblAddtoDS: "Add to dataset",
-        chklbl1:"Sample means",
-        chklbl2:"Sample sums",
-        chklbl3:"Sample standard deviations",
-        help: {
-            title: "Sample from Uniform Distribution",
-            r_help: "help(runif, package=stats)",
-            body: `
-            ​​
-            <b>Description</b>
-            <br/>
-            These functions provide information about the uniform distribution on the interval from min to max. dunif gives the density, punif gives the distribution function qunif gives the quantile function and runif generates random deviates.
-            <br/>
-            <b>Usage</b>
-            <br/>
-            <code>
-                dunif(x, min = 0, max = 1, log = FALSE)
-                <br/>
-                punif(q, min = 0, max = 1, lower.tail = TRUE, log.p = FALSE)
-                <br/>
-                qunif(p, min = 0, max = 1, lower.tail = TRUE, log.p = FALSE)
-                <br/>
-                runif(n, min = 0, max = 1)
-                <br/>
-            </code>
-            <br/>
-            <b>Arguments</b>
-            <br/>
-            <ul>
-                <li>x, q : vector of quantiles.</li>
-                
-                
-                <li>p : vector of probabilities.</li>
-                
-                
-                <li>n : number of observations. If length(n) > 1, the length is taken to be the number required.</li>
-                
-                
-                <li>min, max : lower and upper limits of the distribution. Must be finite.</li>
-                
-                
-                <li>log, log.p : logical; if TRUE, probabilities p are given as log(p).</li>
-                
-                
-                <li>lower.tail :logical; if TRUE (default), probabilities are P[X ≤ x], otherwise, P[X > x].</li>
-            </ul>
-            
-            
-            
-            <br/>
-            <b>Details</b>
-            <br/>
-            If min or max are not specified they assume the default values of 0 and 1 respectively.
-            <br/>
-            The uniform distribution has density
-            <br/>
-            <code>f(x) = 1/(max-min)</code>
-            <br/>
-            for min ≤ x ≤ max.
-            <br/>
-            For the case of u := min == max, the limit case of X == u is assumed, although there is no density in that case and dunif will return NaN (the error condition).
-            <br/>
-            runif will not generate either of the extreme values unless max = min or max-min is small compared to min, and in particular not for the default arguments.
-            <br/>
-            <br/><b>Value</b>
-            <br/>
-            dunif gives the density, punif gives the distribution function, qunif gives the quantile function, and runif generates random deviates.
-            <br/>
-            The length of the result is determined by n for runif, and is the maximum of the lengths of the numerical arguments for the other functions.
-            <br/>
-            The numerical arguments other than n are recycled to the length of the result. Only the first elements of the logical arguments are used.
-            <br/>
-            <br/><b>Note</b>
-            <br/>
-            The characteristics of output from pseudo-random number generators (such as precision and periodicity) vary widely. See .Random.seed for more information on R's random number generation algorithms.            
-`} 
-    }
-}
+
 
 
 
 
 class sampleUniformDistribution extends baseModal {
+    static dialogId = 'sampleUniformDistribution'
+    static t = baseModal.makeT(sampleUniformDistribution.dialogId)
+
     constructor() {
         var config = {
-            id: "sampleUniformDistribution",
-            label: localization.en.title,
+            id: sampleUniformDistribution.dialogId,
+            label: sampleUniformDistribution.t('title'),
             modalType: "one",
             RCode: `
             base::set.seed({{selected.seedval | safe}})
@@ -126,7 +42,7 @@ class sampleUniformDistribution extends baseModal {
             datasetname: {
                 el: new input(config, {
                     no: 'datasetname',
-                    label: localization.en.entrdsname,
+                    label: sampleUniformDistribution.t('entrdsname'),
                     required: true,
                     placeholder: "UniformSamples",
                     extraction: "TextAsIs",
@@ -138,7 +54,7 @@ class sampleUniformDistribution extends baseModal {
             min: {
                 el: new input(config, {
                     no: 'min',
-                    label: localization.en.min,
+                    label: sampleUniformDistribution.t('min'),
                     required: true,
                     placeholder: "0",
                     allow_spaces:true,
@@ -150,7 +66,7 @@ class sampleUniformDistribution extends baseModal {
             max: {
                 el: new input(config, {
                     no: 'max',
-                    label: localization.en.max,
+                    label: sampleUniformDistribution.t('max'),
                     required: true,
                     placeholder: "1",
                     allow_spaces:true,
@@ -162,7 +78,7 @@ class sampleUniformDistribution extends baseModal {
             noofsamples: {
                 el: new inputSpinner(config, {
                     no: 'noofsamples',
-                    label: localization.en.lblnoofsamples,
+                    label: sampleUniformDistribution.t('lblnoofsamples'),
                     min: 1,
                     max: 9999999,
                     step: 1,
@@ -174,7 +90,7 @@ class sampleUniformDistribution extends baseModal {
             noofobsrv: {
                 el: new inputSpinner(config, {
                     no: 'noofobsrv',
-                    label: localization.en.lblnoofobsv,
+                    label: sampleUniformDistribution.t('lblnoofobsv'),
                     min: 1,
                     max: 9999999,
                     step: 1,
@@ -186,7 +102,7 @@ class sampleUniformDistribution extends baseModal {
             seedval: {
                 el: new inputSpinner(config, {
                     no: 'seedval',
-                    label: localization.en.lblseed,
+                    label: sampleUniformDistribution.t('lblseed'),
                     min: 1,
                     max: 9999999,
                     step: 1,
@@ -195,10 +111,10 @@ class sampleUniformDistribution extends baseModal {
                     extraction: "NoPrefix|UseComma"
                 })
             },                         
-            labelAddToDs: { el: new labelVar(config, { label: localization.en.lblAddtoDS, style: "mt-3",h: 5 }) },
-            smplmeans: { el: new checkbox(config, { label: localization.en.chklbl1, no: "smplmeans", state:"checked", extraction: "Boolean", newline: true }) },
-            smplsums: { el: new checkbox(config, { label: localization.en.chklbl2, no: "smplsums", extraction: "Boolean", newline: true}) },
-            smplsd: { el: new checkbox(config, { label: localization.en.chklbl3, no: "smplsd", extraction: "Boolean", newline: true}) },
+            labelAddToDs: { el: new labelVar(config, { label: sampleUniformDistribution.t('lblAddtoDS'), style: "mt-3",h: 5 }) },
+            smplmeans: { el: new checkbox(config, { label: sampleUniformDistribution.t('chklbl1'), no: "smplmeans", state:"checked", extraction: "Boolean", newline: true }) },
+            smplsums: { el: new checkbox(config, { label: sampleUniformDistribution.t('chklbl2'), no: "smplsums", extraction: "Boolean", newline: true}) },
+            smplsd: { el: new checkbox(config, { label: sampleUniformDistribution.t('chklbl3'), no: "smplsd", extraction: "Boolean", newline: true}) },
         }
         const content = {
             items: [objects.datasetname.el.content, objects.min.el.content, objects.max.el.content, 
@@ -206,14 +122,23 @@ class sampleUniformDistribution extends baseModal {
                 objects.labelAddToDs.el.content, objects.smplmeans.el.content, objects.smplsums.el.content, objects.smplsd.el.content
             ],
             nav: {
-                name: localization.en.navigation,
+                name: sampleUniformDistribution.t('navigation'),
                 icon: "icon-rectangle-s",
                 datasetRequired: false,
                 modal: config.id
             }
         }
         super(config, objects, content);
-        this.help = localization.en.help;
+        
+        this.help = {
+            title: sampleUniformDistribution.t('help.title'),
+            r_help: "help(data,package='utils')",
+            body: sampleUniformDistribution.t('help.body')
+        }
+;
     }
 }
-module.exports.item = new sampleUniformDistribution().render()
+
+module.exports = {
+    render: () => new sampleUniformDistribution().render()
+}

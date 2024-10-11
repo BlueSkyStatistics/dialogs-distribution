@@ -1,92 +1,17 @@
 
-var localization = {
-    en: {
-        title: "Exponential Probabilities",
-        navigation: "Exponential Probabilities",
-        varvals: "Enter variable value(s) separated by a comma. Example: 3,0.5",
-        rate: "Rate",
-        labelSig: "Significance level",
-        lowtail: "Lower tail",
-        uptail: "Upper tail",
-        help: {
-            title: "Exponential Probabilities",
-            r_help: "help(pexp, package=stats)",
-            body: `
-            ​​
-            <b>Description</b>
-            <br/>
-            Density, distribution function, quantile function and random generation for the exponential distribution with rate rate (i.e., mean 1/rate).
-            <br/>
-            Usage
-            <br/>
-            <code>
-                dexp(x, rate = 1, log = FALSE)
-                <br/>
-                pexp(q, rate = 1, lower.tail = TRUE, log.p = FALSE)
-                <br/>
-                qexp(p, rate = 1, lower.tail = TRUE, log.p = FALSE)
-                <br/>
-                rexp(n, rate = 1)
-                <br/>
-            </code>
-            <br/>
-            <b>Arguments</b>
-            <br/>
-            <ul>
-                <li>x, q : vector of quantiles.</li>
-                
-                
-                <li>p : vector of probabilities.</li>
-                
-                
-                <li>n : number of observations. If length(n) > 1, the length is taken to be the number required.</li>
-                
-                
-                <li>rate : vector of rates.</li>
-                
-                
-                <li>log, log.p : logical; if TRUE, probabilities p are given as log(p).</li>
-                
-                
-                <li>lower.tail : logical; if TRUE (default), probabilities are P[X ≤ x], otherwise, P[X > x].</li>
-            </ul>
-            
-            
-            
-            <br/>
-            <b>Details</b>
-            <br/>
-            If rate is not specified, it assumes the default value of 1.
-            <br/>
-            The exponential distribution with rate λ has density
-            <br/>
-            <code>f(x) = λ {e}^{- λ x}</code>
-            <br/>
-            for x ≥ 0.
-            <br/>
-            <br/><b>Value</b>
-            <br/>
-            dexp gives the density, pexp gives the distribution function, qexp gives the quantile function, and rexp generates random deviates.
-            <br/>
-            The length of the result is determined by n for rexp, and is the maximum of the lengths of the numerical arguments for the other functions.
-            <br/>
-            The numerical arguments other than n are recycled to the length of the result. Only the first elements of the logical arguments are used.
-            <br/>
-            <br/><b>Note</b>
-            <br/>
-            The cumulative hazard H(t) = - log(1 - F(t)) is -pexp(t, r, lower = FALSE, log = TRUE).            
-`}        
-    }
-}
+
 
 
 
 
 class exponentialProbabilities extends baseModal {
+    static dialogId = 'exponentialProbabilities'
+    static t = baseModal.makeT(exponentialProbabilities.dialogId)
+
     constructor() {
         var config = {
-            id: "exponentialProbabilities",
-            label: localization.en.title,
+            id: exponentialProbabilities.dialogId,
+            label: exponentialProbabilities.t('title'),
             modalType: "one",
             RCode: `
             local(
@@ -101,7 +26,7 @@ class exponentialProbabilities extends baseModal {
             varvals: {
                 el: new input(config, {
                     no: 'varvals',
-                    label: localization.en.varvals,
+                    label: exponentialProbabilities.t('varvals'),
                     required: true,
                     placeholder: "",
                     extraction: "TextAsIs",
@@ -112,7 +37,7 @@ class exponentialProbabilities extends baseModal {
             rate: {
                 el: new input(config, {
                     no: 'rate',
-                    label: localization.en.rate,
+                    label: exponentialProbabilities.t('rate'),
                     required: true,
                     placeholder: "1",
                     allow_spaces:true,
@@ -121,21 +46,30 @@ class exponentialProbabilities extends baseModal {
                     value: "1"
                 })
             },
-            labelSig: { el: new labelVar(config, { label: localization.en.labelSig, style: "mt-3",h: 6 }) },
-            lowtail: { el: new radioButton(config, { label: localization.en.lowtail, no: "a", increment: "TRUE", value: "TRUE", state: "checked", extraction: "ValueAsIs" }) },
-            uptail: { el: new radioButton(config, { label: localization.en.uptail, no: "a", increment: "FALSE", value: "FALSE", state: "", extraction: "ValueAsIs" }) }
+            labelSig: { el: new labelVar(config, { label: exponentialProbabilities.t('labelSig'), style: "mt-3",h: 6 }) },
+            lowtail: { el: new radioButton(config, { label: exponentialProbabilities.t('lowtail'), no: "a", increment: "TRUE", value: "TRUE", state: "checked", extraction: "ValueAsIs" }) },
+            uptail: { el: new radioButton(config, { label: exponentialProbabilities.t('uptail'), no: "a", increment: "FALSE", value: "FALSE", state: "", extraction: "ValueAsIs" }) }
         }
         const content = {
             items: [objects.varvals.el.content, objects.rate.el.content, objects.labelSig.el.content, objects.lowtail.el.content, objects.uptail.el.content],
             nav: {
-                name: localization.en.navigation,
+                name: exponentialProbabilities.t('navigation'),
                 icon: "icon-letter-e-p",
                 datasetRequired: false,
                 modal: config.id
             }
         }
         super(config, objects, content);
-        this.help = localization.en.help;
+        
+        this.help = {
+            title: exponentialProbabilities.t('help.title'),
+            r_help: "help(data,package='utils')",
+            body: exponentialProbabilities.t('help.body')
+        }
+;
     }
 }
-module.exports.item = new exponentialProbabilities().render()
+
+module.exports = {
+    render: () => new exponentialProbabilities().render()
+}

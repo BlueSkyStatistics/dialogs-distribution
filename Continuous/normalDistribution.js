@@ -1,105 +1,17 @@
 
-var localization = {
-    en: {
-        title: "Normal Distribution Plot",
-        navigation: "Normal Distribution Plot",
-        mean: "Mean",
-        sd: "Standard deviation",
-        pdenfun: "Plot density function",
-        pdstfun: "Plot distribution function",
-        lblregions: "Optionally specify regions under the density function by",
-        xvals : "x-values",
-        quantiles : "quantiles",
-        lblRegFill : "Regions to fill (specify one or two, or leave blank)",
-        lblreg1 : "Region 1 :",
-        lblreg2 : "Region 2 :",
-        lblregfrm : "From",
-        lblregto : "To",
-        lblregcol : "Color",
-        lblLegPos: "Position of legend",
-        toprt: "Top right",
-        toplt: "Top left",
-        topmid: "Top center",
-        help: {
-            title: "Normal Distribution Plot",
-            r_help: "help(qnorm, package=stats)",
-            body: `
-            ​​
-            <b>Description</b>
-            <br/>
-            Density, distribution function, quantile function and random generation for the normal distribution with mean equal to mean and standard deviation equal to sd.
-            <br/>
-            <b>Usage</b>
-            <br/>
-            <code>
-                dnorm(x, mean = 0, sd = 1, log = FALSE)
-                <br/>
-                pnorm(q, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)
-                <br/>
-                qnorm(p, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)
-                <br/>
-                rnorm(n, mean = 0, sd = 1)
-                <br/>
-            </code>
-            <br/>
-            <b>Arguments</b>
-            <br/>
-            <ul>
-                <li>x, q : vector of quantiles.</li>
-                
-                
-                <li>p : vector of probabilities.</li>
-                
-                
-                <li>n : number of observations. If length(n) > 1, the length is taken to be the number required.</li>
-                
-                
-                <li>mean : vector of means.</li>
-                
-                
-                <li>sd : vector of standard deviations.</li>
-                
-                
-                <li>log, log.p : logical; if TRUE, probabilities p are given as log(p).</li>
-                
-                
-                <li>lower.tail : logical; if TRUE (default), probabilities are P[X ≤ x] otherwise, P[X > x].</li>
-            </ul>
-            
-            
-            
-            <br/>
-            <b>Details</b>
-            <br/>
-            If mean or sd are not specified they assume the default values of 0 and 1, respectively.
-            <br/>
-            The normal distribution has density
-            <br/>
-            <code>f(x) = 1/(√(2 π) σ) e^-((x - μ)^2/(2 σ^2))</code>
-            <br/>
-            where μ is the mean of the distribution and σ the standard deviation.
-            <br/>
-            <br/><b>Value</b>
-            <br/>
-            dnorm gives the density, pnorm gives the distribution function, qnorm gives the quantile function, and rnorm generates random deviates.
-            <br/>
-            The length of the result is determined by n for rnorm, and is the maximum of the lengths of the numerical arguments for the other functions.
-            <br/>
-            The numerical arguments other than n are recycled to the length of the result. Only the first elements of the logical arguments are used.
-            <br/>
-            For sd = 0 this gives the limit as sd decreases to 0, a point mass at mu. sd < 0 is an error and returns NaN.            
-`}
-    }
-}
+
 
 
 
 
 class normalDistributionPlot extends baseModal {
+    static dialogId = 'normalDistributionPlot'
+    static t = baseModal.makeT(normalDistributionPlot.dialogId)
+
     constructor() {
         var config = {
-            id: "normalDistributionPlot",
-            label: localization.en.title,
+            id: normalDistributionPlot.dialogId,
+            label: normalDistributionPlot.t('title'),
             modalType: "one",
             RCode: `
             local(
@@ -140,7 +52,7 @@ class normalDistributionPlot extends baseModal {
             mean: {
                 el: new input(config, {
                     no: 'mean',
-                    label: localization.en.mean,
+                    label: normalDistributionPlot.t('mean'),
                     required: true,
                     placeholder: "0",
                     allow_spaces:true,
@@ -152,7 +64,7 @@ class normalDistributionPlot extends baseModal {
             sd: {
                 el: new input(config, {
                     no: 'sd',
-                    label: localization.en.sd,
+                    label: normalDistributionPlot.t('sd'),
                     required: true,
                     placeholder: "1",
                     allow_spaces:true,
@@ -161,20 +73,20 @@ class normalDistributionPlot extends baseModal {
                     value: "1"
                 })
             },
-            plotdenfun: { el: new radioButton(config, { label: localization.en.pdenfun, no: "a", increment: "TRUE", style:"mt-3", value: "TRUE", state: "checked", extraction: "ValueAsIs" }) },
-            plotdistfun: { el: new radioButton(config, { label: localization.en.pdstfun, no: "a", increment: "FALSE", value: "FALSE", state: "", extraction: "ValueAsIs" }) },
+            plotdenfun: { el: new radioButton(config, { label: normalDistributionPlot.t('pdenfun'), no: "a", increment: "TRUE", style:"mt-3", value: "TRUE", state: "checked", extraction: "ValueAsIs" }) },
+            plotdistfun: { el: new radioButton(config, { label: normalDistributionPlot.t('pdstfun'), no: "a", increment: "FALSE", value: "FALSE", state: "", extraction: "ValueAsIs" }) },
 
-            lblRegUndr: { el: new labelVar(config, { label: localization.en.lblregions, style: "mt-3",h: 5 }) },
-            xvalrad: { el: new radioButton(config, { label: localization.en.xvals, no: "b", increment: "TRUE", value: "TRUE", state: "checked", extraction: "ValueAsIs" }) },
-            quntlrad: { el: new radioButton(config, { label: localization.en.quantiles, no: "b", increment: "FALSE", value: "FALSE", state: "", extraction: "ValueAsIs" }) },
+            lblRegUndr: { el: new labelVar(config, { label: normalDistributionPlot.t('lblregions'), style: "mt-3",h: 5 }) },
+            xvalrad: { el: new radioButton(config, { label: normalDistributionPlot.t('xvals'), no: "b", increment: "TRUE", value: "TRUE", state: "checked", extraction: "ValueAsIs" }) },
+            quntlrad: { el: new radioButton(config, { label: normalDistributionPlot.t('quantiles'), no: "b", increment: "FALSE", value: "FALSE", state: "", extraction: "ValueAsIs" }) },
 
-            lblRegiFill: { el: new labelVar(config, { label: localization.en.lblRegFill, style: "mt-3",h: 5}) },
+            lblRegiFill: { el: new labelVar(config, { label: normalDistributionPlot.t('lblRegFill'), style: "mt-3",h: 5}) },
 
-            lblRegion1: { el: new labelVar(config, { label: localization.en.lblreg1, style: "mt-3",h: 6 }) },
+            lblRegion1: { el: new labelVar(config, { label: normalDistributionPlot.t('lblreg1'), style: "mt-3",h: 6 }) },
             reg1Frm: {
                 el: new input(config, {
                     no: 'reg1frm',
-                    label: localization.en.lblregfrm,
+                    label: normalDistributionPlot.t('lblregfrm'),
                     placeholder: "",
                     allow_spaces:true,
                     type : "numeric",
@@ -185,7 +97,7 @@ class normalDistributionPlot extends baseModal {
             reg1To: {
                 el: new input(config, {
                     no: 'reg1to',
-                    label: localization.en.lblregto,
+                    label: normalDistributionPlot.t('lblregto'),
                     placeholder: "",
                     allow_spaces:true,
                     type : "numeric",
@@ -196,7 +108,7 @@ class normalDistributionPlot extends baseModal {
             reg1Col: {
                 el: new colorInput(config, {
                     no: 'reg1col',
-                    label: localization.en.lblregcol,
+                    label: normalDistributionPlot.t('lblregcol'),
                     placeholder: "#BEBEBE",
                     allow_spaces:true,
                     type: "character",
@@ -205,11 +117,11 @@ class normalDistributionPlot extends baseModal {
                 })
             },            
 
-            lblRegion2: { el: new labelVar(config, { label: localization.en.lblreg2, style: "mt-3",h: 6 }) },
+            lblRegion2: { el: new labelVar(config, { label: normalDistributionPlot.t('lblreg2'), style: "mt-3",h: 6 }) },
             reg2Frm: {
                 el: new input(config, {
                     no: 'reg2frm',
-                    label: localization.en.lblregfrm,
+                    label: normalDistributionPlot.t('lblregfrm'),
                     placeholder: "",
                     allow_spaces:true,
                     type : "numeric",
@@ -220,7 +132,7 @@ class normalDistributionPlot extends baseModal {
             reg2To: {
                 el: new input(config, {
                     no: 'reg2to',
-                    label: localization.en.lblregto,
+                    label: normalDistributionPlot.t('lblregto'),
                     placeholder: "",
                     allow_spaces:true,
                     type : "numeric",
@@ -231,7 +143,7 @@ class normalDistributionPlot extends baseModal {
             reg2Col: {
                 el: new colorInput(config, {
                     no: 'reg2col',
-                    label: localization.en.lblregcol,
+                    label: normalDistributionPlot.t('lblregcol'),
                     placeholder: "#BEBEBE",
                     allow_spaces:true,
                     type: "character",
@@ -240,10 +152,10 @@ class normalDistributionPlot extends baseModal {
                 })
             },                           
 
-            lblLegposi: { el: new labelVar(config, { label: localization.en.lblLegPos, style: "mt-3",h: 5 }) },
-            toprtrad: { el: new radioButton(config, { label: localization.en.toprt, no: "c", increment: "TRUE", value: "topright", state: "checked", extraction: "ValueAsIs" }) },
-            topltrad: { el: new radioButton(config, { label: localization.en.toplt, no: "c", increment: "FALSE", value: "topleft", state: "", extraction: "ValueAsIs" }) },
-            topmidrad: { el: new radioButton(config, { label: localization.en.topmid, no: "c", increment: "FALSE", value: "top", state: "", extraction: "ValueAsIs" }) }
+            lblLegposi: { el: new labelVar(config, { label: normalDistributionPlot.t('lblLegPos'), style: "mt-3",h: 5 }) },
+            toprtrad: { el: new radioButton(config, { label: normalDistributionPlot.t('toprt'), no: "c", increment: "TRUE", value: "topright", state: "checked", extraction: "ValueAsIs" }) },
+            topltrad: { el: new radioButton(config, { label: normalDistributionPlot.t('toplt'), no: "c", increment: "FALSE", value: "topleft", state: "", extraction: "ValueAsIs" }) },
+            topmidrad: { el: new radioButton(config, { label: normalDistributionPlot.t('topmid'), no: "c", increment: "FALSE", value: "top", state: "", extraction: "ValueAsIs" }) }
         }
         const content = {
             items: [objects.mean.el.content, objects.sd.el.content, 
@@ -255,14 +167,23 @@ class normalDistributionPlot extends baseModal {
                 objects.lblLegposi.el.content, objects.toprtrad.el.content, objects.topltrad.el.content,objects.topmidrad.el.content
             ],
             nav: {
-                name: localization.en.navigation,
+                name: normalDistributionPlot.t('navigation'),
                 icon: "icon-gaussian-function-g",
                 datasetRequired: false,
                 modal: config.id
             }
         }
         super(config, objects, content);
-        this.help = localization.en.help;
+        
+        this.help = {
+            title: normalDistributionPlot.t('help.title'),
+            r_help: "help(data,package='utils')",
+            body: normalDistributionPlot.t('help.body')
+        }
+;
     }
 }
-module.exports.item = new normalDistributionPlot().render()
+
+module.exports = {
+    render: () => new normalDistributionPlot().render()
+}

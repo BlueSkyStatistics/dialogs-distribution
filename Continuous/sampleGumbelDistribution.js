@@ -1,71 +1,17 @@
 
-var localization = {
-    en: {
-        title: "Sample from Gumbel Distribution",
-        navigation: "Sample from Gumbel Distribution",
-        entrdsname: "Enter name for dataset",
-        location: "Location",
-        scale: "Scale",
-        lblnoofsamples:  "Number of samples (rows)",
-        lblnoofobsv: "Number of observations (columns)",
-        lblseed: "Seed",
-        lblAddtoDS: "Add to dataset",
-        chklbl1:"Sample means",
-        chklbl2:"Sample sums",
-        chklbl3:"Sample standard deviations",
-        help: {
-            title: "Sample from Gumbel Distribution",
-            r_help: "help(rgumbel, package=RcmdrMisc)",
-            body: `
-            ​​
-            <b>Description</b>
-            <br/>
-            Density, distribution function, quantile function and random generation for the Gumbel distribution with specified location and scale parameters.
-            <br/>
-            <b>Usage</b>
-            <br/>
-            <code>
-                dgumbel(x, location = 0, scale = 1)
-                <br/>
-                pgumbel(q, location=0, scale=1, lower.tail=TRUE)
-                <br/>
-                qgumbel(p, location=0, scale=1, lower.tail=TRUE)
-                <br/>
-                rgumbel(n, location=0, scale=1)
-                <br/>
-            </code>
-            <br/>
-            <b>Arguments</b>
-            <br/>
-            <ul>
-                <li>x, q : vector of quantiles (values of the variable).</li>
-                
-                
-                <li>p : vector of probabilities.</li>
-                
-                
-                <li>n : number of observations. If length(n) > 1, the length is taken to be the number required.</li>
-                
-                
-                <li>location : location parameter (default 0); potentially a vector.</li>
-                
-                
-                <li>scale : scale parameter (default 1); potentially a vector.</li>
-                
-                <li>lower.tail : logical; if TRUE (the default) probabilities and quantiles correspond to P(X ≤ x), if FALSE to P(X > x).</li>
-            </ul>            
-`}        
-    }
-}
+
 
 
 
 
 class sampleGumbelDistribution extends baseModal {
+    static dialogId = 'sampleGumbelDistribution'
+    static t = baseModal.makeT(sampleGumbelDistribution.dialogId)
+
     constructor() {
         var config = {
-            id: "sampleGumbelDistribution",
-            label: localization.en.title,
+            id: sampleGumbelDistribution.dialogId,
+            label: sampleGumbelDistribution.t('title'),
             modalType: "one",
             RCode: `
             base::set.seed({{selected.seedval | safe}})
@@ -96,7 +42,7 @@ class sampleGumbelDistribution extends baseModal {
             datasetname: {
                 el: new input(config, {
                     no: 'datasetname',
-                    label: localization.en.entrdsname,
+                    label: sampleGumbelDistribution.t('entrdsname'),
                     required: true,
                     placeholder: "GumbelSamples",
                     extraction: "TextAsIs",
@@ -108,7 +54,7 @@ class sampleGumbelDistribution extends baseModal {
             location: {
                 el: new input(config, {
                     no: 'location',
-                    label: localization.en.location,
+                    label: sampleGumbelDistribution.t('location'),
                     required: true,
                     placeholder: "0",
                     allow_spaces:true,
@@ -120,7 +66,7 @@ class sampleGumbelDistribution extends baseModal {
             scale: {
                 el: new input(config, {
                     no: 'scale',
-                    label: localization.en.scale,
+                    label: sampleGumbelDistribution.t('scale'),
                     required: true,
                     placeholder: "1",
                     allow_spaces:true,
@@ -132,7 +78,7 @@ class sampleGumbelDistribution extends baseModal {
             noofsamples: {
                 el: new inputSpinner(config, {
                     no: 'noofsamples',
-                    label: localization.en.lblnoofsamples,
+                    label: sampleGumbelDistribution.t('lblnoofsamples'),
                     min: 1,
                     max: 9999999,
                     step: 1,
@@ -144,7 +90,7 @@ class sampleGumbelDistribution extends baseModal {
             noofobsrv: {
                 el: new inputSpinner(config, {
                     no: 'noofobsrv',
-                    label: localization.en.lblnoofobsv,
+                    label: sampleGumbelDistribution.t('lblnoofobsv'),
                     min: 1,
                     max: 9999999,
                     step: 1,
@@ -156,7 +102,7 @@ class sampleGumbelDistribution extends baseModal {
             seedval: {
                 el: new inputSpinner(config, {
                     no: 'seedval',
-                    label: localization.en.lblseed,
+                    label: sampleGumbelDistribution.t('lblseed'),
                     min: 1,
                     max: 9999999,
                     step: 1,
@@ -165,10 +111,10 @@ class sampleGumbelDistribution extends baseModal {
                     extraction: "NoPrefix|UseComma"
                 })
             },                         
-            labelAddToDs: { el: new labelVar(config, { label: localization.en.lblAddtoDS, style: "mt-3",h: 5 }) },
-            smplmeans: { el: new checkbox(config, { label: localization.en.chklbl1, no: "smplmeans", state:"checked", extraction: "Boolean", newline: true }) },
-            smplsums: { el: new checkbox(config, { label: localization.en.chklbl2, no: "smplsums", extraction: "Boolean", newline: true}) },
-            smplsd: { el: new checkbox(config, { label: localization.en.chklbl3, no: "smplsd", extraction: "Boolean", newline: true}) },
+            labelAddToDs: { el: new labelVar(config, { label: sampleGumbelDistribution.t('lblAddtoDS'), style: "mt-3",h: 5 }) },
+            smplmeans: { el: new checkbox(config, { label: sampleGumbelDistribution.t('chklbl1'), no: "smplmeans", state:"checked", extraction: "Boolean", newline: true }) },
+            smplsums: { el: new checkbox(config, { label: sampleGumbelDistribution.t('chklbl2'), no: "smplsums", extraction: "Boolean", newline: true}) },
+            smplsd: { el: new checkbox(config, { label: sampleGumbelDistribution.t('chklbl3'), no: "smplsd", extraction: "Boolean", newline: true}) },
         }
         const content = {
             items: [objects.datasetname.el.content, objects.location.el.content, objects.scale.el.content, 
@@ -176,14 +122,23 @@ class sampleGumbelDistribution extends baseModal {
                 objects.labelAddToDs.el.content, objects.smplmeans.el.content, objects.smplsums.el.content, objects.smplsd.el.content
             ],
             nav: {
-                name: localization.en.navigation,
+                name: sampleGumbelDistribution.t('navigation'),
                 icon: "icon-gumbel-s",
                 datasetRequired: false,
                 modal: config.id
             }
         }
         super(config, objects, content);
-        this.help = localization.en.help;
+        
+        this.help = {
+            title: sampleGumbelDistribution.t('help.title'),
+            r_help: "help(data,package='utils')",
+            body: sampleGumbelDistribution.t('help.body')
+        }
+;
     }
 }
-module.exports.item = new sampleGumbelDistribution().render()
+
+module.exports = {
+    render: () => new sampleGumbelDistribution().render()
+}

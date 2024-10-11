@@ -1,108 +1,17 @@
 
-var localization = {
-    en: {
-        title: "Uniform Distribution Plot",
-        navigation: "Uniform Distribution Plot",
-        min: "Minimum",
-        max: "Maximum",
-        pdenfun: "Plot density function",
-        pdstfun: "Plot distribution function",
-        lblregions: "Optionally specify regions under the density function by",
-        xvals : "x-values",
-        quantiles : "quantiles",
-        lblRegFill : "Regions to fill (specify one or two, or leave blank)",
-        lblreg1 : "Region 1 :",
-        lblreg2 : "Region 2 :",
-        lblregfrm : "From",
-        lblregto : "To",
-        lblregcol : "Color",
-        lblLegPos: "Position of legend",
-        toprt: "Top right",
-        toplt: "Top left",
-        topmid: "Top center",
-        help: {
-            title: "Uniform Distribution Plot",
-            r_help: "help(qunif, package=stats)",
-            body: `
-            ​​
-            <b>Description</b>
-            <br/>
-            These functions provide information about the uniform distribution on the interval from min to max. dunif gives the density, punif gives the distribution function qunif gives the quantile function and runif generates random deviates.
-            <br/>
-            <b>Usage</b>
-            <br/>
-            <code>
-                dunif(x, min = 0, max = 1, log = FALSE)
-                <br/>
-                punif(q, min = 0, max = 1, lower.tail = TRUE, log.p = FALSE)
-                <br/>
-                qunif(p, min = 0, max = 1, lower.tail = TRUE, log.p = FALSE)
-                <br/>
-                runif(n, min = 0, max = 1)
-                <br/>
-            </code>
-            <br/>
-            <b>Arguments</b>
-            <br/>
-            <ul>
-                <li>x, q : vector of quantiles.</li>
-                
-                
-                <li>p : vector of probabilities.</li>
-                
-                
-                <li>n : number of observations. If length(n) > 1, the length is taken to be the number required.</li>
-                
-                
-                <li>min, max : lower and upper limits of the distribution. Must be finite.</li>
-                
-                
-                <li>log, log.p : logical; if TRUE, probabilities p are given as log(p).</li>
-                
-                
-                <li>lower.tail :logical; if TRUE (default), probabilities are P[X ≤ x], otherwise, P[X > x].</li>
-            </ul>
-            
-            
-            
-            <br/>
-            <b>Details</b>
-            <br/>
-            If min or max are not specified they assume the default values of 0 and 1 respectively.
-            <br/>
-            The uniform distribution has density
-            <br/>
-            <code>f(x) = 1/(max-min)</code>
-            <br/>
-            for min ≤ x ≤ max.
-            <br/>
-            For the case of u := min == max, the limit case of X == u is assumed, although there is no density in that case and dunif will return NaN (the error condition).
-            <br/>
-            runif will not generate either of the extreme values unless max = min or max-min is small compared to min, and in particular not for the default arguments.
-            <br/>
-            <br/><b>Value</b>
-            <br/>
-            dunif gives the density, punif gives the distribution function, qunif gives the quantile function, and runif generates random deviates.
-            <br/>
-            The length of the result is determined by n for runif, and is the maximum of the lengths of the numerical arguments for the other functions.
-            <br/>
-            The numerical arguments other than n are recycled to the length of the result. Only the first elements of the logical arguments are used.
-            <br/>
-            <br/><b>Note</b>
-            <br/>
-            The characteristics of output from pseudo-random number generators (such as precision and periodicity) vary widely. See .Random.seed for more information on R's random number generation algorithms.            
-`} 
-    }
-}
+
 
 
 
 
 class uniformDistributionPlot extends baseModal {
+    static dialogId = 'uniformDistributionPlot'
+    static t = baseModal.makeT(uniformDistributionPlot.dialogId)
+
     constructor() {
         var config = {
-            id: "uniformDistributionPlot",
-            label: localization.en.title,
+            id: uniformDistributionPlot.dialogId,
+            label: uniformDistributionPlot.t('title'),
             modalType: "one",
             RCode: `
             local(
@@ -143,7 +52,7 @@ class uniformDistributionPlot extends baseModal {
             min: {
                 el: new input(config, {
                     no: 'min',
-                    label: localization.en.min,
+                    label: uniformDistributionPlot.t('min'),
                     required: true,
                     placeholder: "0",
                     allow_spaces:true,
@@ -155,7 +64,7 @@ class uniformDistributionPlot extends baseModal {
             max: {
                 el: new input(config, {
                     no: 'max',
-                    label: localization.en.max,
+                    label: uniformDistributionPlot.t('max'),
                     required: true,
                     placeholder: "1",
                     allow_spaces:true,
@@ -164,20 +73,20 @@ class uniformDistributionPlot extends baseModal {
                     value: "1"
                 })
             },
-            plotdenfun: { el: new radioButton(config, { label: localization.en.pdenfun, no: "a", increment: "TRUE", style:"mt-3", value: "TRUE", state: "checked", extraction: "ValueAsIs" }) },
-            plotdistfun: { el: new radioButton(config, { label: localization.en.pdstfun, no: "a", increment: "FALSE", value: "FALSE", state: "", extraction: "ValueAsIs" }) },
+            plotdenfun: { el: new radioButton(config, { label: uniformDistributionPlot.t('pdenfun'), no: "a", increment: "TRUE", style:"mt-3", value: "TRUE", state: "checked", extraction: "ValueAsIs" }) },
+            plotdistfun: { el: new radioButton(config, { label: uniformDistributionPlot.t('pdstfun'), no: "a", increment: "FALSE", value: "FALSE", state: "", extraction: "ValueAsIs" }) },
 
-            lblRegUndr: { el: new labelVar(config, { label: localization.en.lblregions, style: "mt-3",h: 5 }) },
-            xvalrad: { el: new radioButton(config, { label: localization.en.xvals, no: "b", increment: "TRUE", value: "TRUE", state: "checked", extraction: "ValueAsIs" }) },
-            quntlrad: { el: new radioButton(config, { label: localization.en.quantiles, no: "b", increment: "FALSE", value: "FALSE", state: "", extraction: "ValueAsIs" }) },
+            lblRegUndr: { el: new labelVar(config, { label: uniformDistributionPlot.t('lblregions'), style: "mt-3",h: 5 }) },
+            xvalrad: { el: new radioButton(config, { label: uniformDistributionPlot.t('xvals'), no: "b", increment: "TRUE", value: "TRUE", state: "checked", extraction: "ValueAsIs" }) },
+            quntlrad: { el: new radioButton(config, { label: uniformDistributionPlot.t('quantiles'), no: "b", increment: "FALSE", value: "FALSE", state: "", extraction: "ValueAsIs" }) },
 
-            lblRegiFill: { el: new labelVar(config, { label: localization.en.lblRegFill, style: "mt-3",h: 5}) },
+            lblRegiFill: { el: new labelVar(config, { label: uniformDistributionPlot.t('lblRegFill'), style: "mt-3",h: 5}) },
 
-            lblRegion1: { el: new labelVar(config, { label: localization.en.lblreg1, style: "mt-3",h: 6 }) },
+            lblRegion1: { el: new labelVar(config, { label: uniformDistributionPlot.t('lblreg1'), style: "mt-3",h: 6 }) },
             reg1Frm: {
                 el: new input(config, {
                     no: 'reg1frm',
-                    label: localization.en.lblregfrm,
+                    label: uniformDistributionPlot.t('lblregfrm'),
                     placeholder: "",
                     allow_spaces:true,
                     type : "numeric",
@@ -188,7 +97,7 @@ class uniformDistributionPlot extends baseModal {
             reg1To: {
                 el: new input(config, {
                     no: 'reg1to',
-                    label: localization.en.lblregto,
+                    label: uniformDistributionPlot.t('lblregto'),
                     placeholder: "",
                     allow_spaces:true,
                     type : "numeric",
@@ -199,7 +108,7 @@ class uniformDistributionPlot extends baseModal {
             reg1Col: {
                 el: new colorInput(config, {
                     no: 'reg1col',
-                    label: localization.en.lblregcol,
+                    label: uniformDistributionPlot.t('lblregcol'),
                     placeholder: "#BEBEBE",
                     allow_spaces:true,
                     type: "character",
@@ -208,11 +117,11 @@ class uniformDistributionPlot extends baseModal {
                 })
             },            
 
-            lblRegion2: { el: new labelVar(config, { label: localization.en.lblreg2, style: "mt-3",h: 6 }) },
+            lblRegion2: { el: new labelVar(config, { label: uniformDistributionPlot.t('lblreg2'), style: "mt-3",h: 6 }) },
             reg2Frm: {
                 el: new input(config, {
                     no: 'reg2frm',
-                    label: localization.en.lblregfrm,
+                    label: uniformDistributionPlot.t('lblregfrm'),
                     placeholder: "",
                     allow_spaces:true,
                     type : "numeric",
@@ -223,7 +132,7 @@ class uniformDistributionPlot extends baseModal {
             reg2To: {
                 el: new input(config, {
                     no: 'reg2to',
-                    label: localization.en.lblregto,
+                    label: uniformDistributionPlot.t('lblregto'),
                     placeholder: "",
                     allow_spaces:true,
                     type : "numeric",
@@ -234,7 +143,7 @@ class uniformDistributionPlot extends baseModal {
             reg2Col: {
                 el: new colorInput(config, {
                     no: 'reg2col',
-                    label: localization.en.lblregcol,
+                    label: uniformDistributionPlot.t('lblregcol'),
                     placeholder: "#BEBEBE",
                     allow_spaces:true,
                     type: "character",
@@ -243,10 +152,10 @@ class uniformDistributionPlot extends baseModal {
                 })
             },                           
 
-            lblLegposi: { el: new labelVar(config, { label: localization.en.lblLegPos, style: "mt-3",h: 5 }) },
-            toprtrad: { el: new radioButton(config, { label: localization.en.toprt, no: "c", increment: "TRUE", value: "topright", state: "checked", extraction: "ValueAsIs" }) },
-            topltrad: { el: new radioButton(config, { label: localization.en.toplt, no: "c", increment: "FALSE", value: "topleft", state: "", extraction: "ValueAsIs" }) },
-            topmidrad: { el: new radioButton(config, { label: localization.en.topmid, no: "c", increment: "FALSE", value: "top", state: "", extraction: "ValueAsIs" }) }
+            lblLegposi: { el: new labelVar(config, { label: uniformDistributionPlot.t('lblLegPos'), style: "mt-3",h: 5 }) },
+            toprtrad: { el: new radioButton(config, { label: uniformDistributionPlot.t('toprt'), no: "c", increment: "TRUE", value: "topright", state: "checked", extraction: "ValueAsIs" }) },
+            topltrad: { el: new radioButton(config, { label: uniformDistributionPlot.t('toplt'), no: "c", increment: "FALSE", value: "topleft", state: "", extraction: "ValueAsIs" }) },
+            topmidrad: { el: new radioButton(config, { label: uniformDistributionPlot.t('topmid'), no: "c", increment: "FALSE", value: "top", state: "", extraction: "ValueAsIs" }) }
         }
         const content = {
             items: [objects.min.el.content, objects.max.el.content, 
@@ -258,14 +167,23 @@ class uniformDistributionPlot extends baseModal {
                 objects.lblLegposi.el.content, objects.toprtrad.el.content, objects.topltrad.el.content,objects.topmidrad.el.content
             ],
             nav: {
-                name: localization.en.navigation,
+                name: uniformDistributionPlot.t('navigation'),
                 icon: "icon-rectangle-g",
                 datasetRequired: false,
                 modal: config.id
             }
         }
         super(config, objects, content);
-        this.help = localization.en.help;
+        
+        this.help = {
+            title: uniformDistributionPlot.t('help.title'),
+            r_help: "help(data,package='utils')",
+            body: uniformDistributionPlot.t('help.body')
+        }
+;
     }
 }
-module.exports.item = new uniformDistributionPlot().render()
+
+module.exports = {
+    render: () => new uniformDistributionPlot().render()
+}

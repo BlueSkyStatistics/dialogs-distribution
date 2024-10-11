@@ -1,98 +1,17 @@
 
-var localization = {
-    en: {
-        title: "Sample from Cauchy Distribution",
-        navigation: "Sample from Cauchy Distribution",
-        entrdsname: "Enter name for dataset",
-        location: "Location",
-        scale: "Scale",
-        lblnoofsamples:  "Number of samples (rows)",
-        lblnoofobsv: "Number of observations (columns)",
-        lblseed: "Seed",
-        lblAddtoDS: "Add to dataset",
-        chklbl1:"Sample means",
-        chklbl2:"Sample sums",
-        chklbl3:"Sample standard deviations",
-        help: {
-            title: "Sample from Cauchy Distribution",
-            r_help: "help(rcauchy, package=stats)",
-            body: `
-            ​​
-            <b>Description</b>
-            <br/>
-            Density, distribution function, quantile function and random generation for the Cauchy distribution with location parameter location and scale parameter scale.
-            <br/>
-            <b>Usage</b>
-            <br/>
-            <code>
-                dcauchy(x, location = 0, scale = 1, log = FALSE)
-                <br/>
-                pcauchy(q, location = 0, scale = 1, lower.tail = TRUE, log.p = FALSE)
-                <br/>
-                qcauchy(p, location = 0, scale = 1, lower.tail = TRUE, log.p = FALSE)
-                <br/>
-                rcauchy(n, location = 0, scale = 1)
-                <br/>
-            </code>
-            <br/>
-            <b>Arguments</b>
-            <br/>
-            <ul>
-                <li>x, q : vector of quantiles.</li>
-                
-                
-                <li>p : vector of probabilities.</li>
-                
-                
-                <li>n : number of observations. If length(n) > 1, the length is taken to be the number required.</li>
-                
-                
-                <li>location, scale : location and scale parameters.</li>
-                
-                
-                <li>log, log.p : logical; if TRUE, probabilities p are given as log(p).</li>
-                
-                
-                <li>lower.tail : logical; if TRUE (default), probabilities are P[X ≤ x], otherwise, P[X > x].</li>
-            </ul>
-            
-            
-            
-            <br/>
-            <b>Details</b>
-            <br/>
-            If location or scale are not specified, they assume the default values of 0 and 1 respectively.
-            <br/>
-            The Cauchy distribution with location l and scale s has density
-            <br/>
-            <code>f(x) = 1 / (π s (1 + ((x-l)/s)^2))</code>
-            for all x.
-            <br/>
-            <br/><b>Value</b>
-            <br/>
-            dcauchy, pcauchy, and qcauchy are respectively the density, distribution function and quantile function of the Cauchy distribution. rcauchy generates random deviates from the Cauchy.
-            <br/>
-            The length of the result is determined by n for rcauchy, and is the maximum of the lengths of the numerical arguments for the other functions.
-            <br/>
-            The numerical arguments other than n are recycled to the length of the result. Only the first elements of the logical arguments are used.
-            <br/>
-            <b>Source</b>
-            <br/>
-            dcauchy, pcauchy and qcauchy are all calculated from numerically stable versions of the definitions.
-            <br/>
-            rcauchy uses inversion.            
-`}        
-    }
-}
+
 
 
 
 
 class sampleCauchyDistribution extends baseModal {
+    static dialogId = 'sampleCauchyDistribution'
+    static t = baseModal.makeT(sampleCauchyDistribution.dialogId)
+
     constructor() {
         var config = {
-            id: "sampleCauchyDistribution",
-            label: localization.en.title,
+            id: sampleCauchyDistribution.dialogId,
+            label: sampleCauchyDistribution.t('title'),
             modalType: "one",
             RCode: `
             base::set.seed({{selected.seedval | safe}})
@@ -123,7 +42,7 @@ class sampleCauchyDistribution extends baseModal {
             datasetname: {
                 el: new input(config, {
                     no: 'datasetname',
-                    label: localization.en.entrdsname,
+                    label: sampleCauchyDistribution.t('entrdsname'),
                     required: true,
                     placeholder: "CauchySamples",
                     extraction: "TextAsIs",
@@ -135,7 +54,7 @@ class sampleCauchyDistribution extends baseModal {
             location: {
                 el: new input(config, {
                     no: 'location',
-                    label: localization.en.location,
+                    label: sampleCauchyDistribution.t('location'),
                     required: true,
                     placeholder: "0",
                     allow_spaces:true,
@@ -147,7 +66,7 @@ class sampleCauchyDistribution extends baseModal {
             scale: {
                 el: new input(config, {
                     no: 'scale',
-                    label: localization.en.scale,
+                    label: sampleCauchyDistribution.t('scale'),
                     required: true,
                     placeholder: "1",
                     allow_spaces:true,
@@ -159,7 +78,7 @@ class sampleCauchyDistribution extends baseModal {
             noofsamples: {
                 el: new inputSpinner(config, {
                     no: 'noofsamples',
-                    label: localization.en.lblnoofsamples,
+                    label: sampleCauchyDistribution.t('lblnoofsamples'),
                     min: 1,
                     max: 9999999,
                     step: 1,
@@ -171,7 +90,7 @@ class sampleCauchyDistribution extends baseModal {
             noofobsrv: {
                 el: new inputSpinner(config, {
                     no: 'noofobsrv',
-                    label: localization.en.lblnoofobsv,
+                    label: sampleCauchyDistribution.t('lblnoofobsv'),
                     min: 1,
                     max: 9999999,
                     step: 1,
@@ -183,7 +102,7 @@ class sampleCauchyDistribution extends baseModal {
             seedval: {
                 el: new inputSpinner(config, {
                     no: 'seedval',
-                    label: localization.en.lblseed,
+                    label: sampleCauchyDistribution.t('lblseed'),
                     min: 1,
                     max: 9999999,
                     step: 1,
@@ -192,10 +111,10 @@ class sampleCauchyDistribution extends baseModal {
                     extraction: "NoPrefix|UseComma"
                 })
             },                         
-            labelAddToDs: { el: new labelVar(config, { label: localization.en.lblAddtoDS, style: "mt-3",h: 5 }) },
-            smplmeans: { el: new checkbox(config, { label: localization.en.chklbl1, no: "smplmeans",state:"checked", extraction: "Boolean", newline: true }) },
-            smplsums: { el: new checkbox(config, { label: localization.en.chklbl2, no: "smplsums", extraction: "Boolean", newline: true}) },
-            smplsd: { el: new checkbox(config, { label: localization.en.chklbl3, no: "smplsd", extraction: "Boolean", newline: true}) },
+            labelAddToDs: { el: new labelVar(config, { label: sampleCauchyDistribution.t('lblAddtoDS'), style: "mt-3",h: 5 }) },
+            smplmeans: { el: new checkbox(config, { label: sampleCauchyDistribution.t('chklbl1'), no: "smplmeans",state:"checked", extraction: "Boolean", newline: true }) },
+            smplsums: { el: new checkbox(config, { label: sampleCauchyDistribution.t('chklbl2'), no: "smplsums", extraction: "Boolean", newline: true}) },
+            smplsd: { el: new checkbox(config, { label: sampleCauchyDistribution.t('chklbl3'), no: "smplsd", extraction: "Boolean", newline: true}) },
         }
         const content = {
             items: [objects.datasetname.el.content, objects.location.el.content, objects.scale.el.content, 
@@ -203,14 +122,23 @@ class sampleCauchyDistribution extends baseModal {
                 objects.labelAddToDs.el.content, objects.smplmeans.el.content, objects.smplsums.el.content, objects.smplsd.el.content
             ],
             nav: {
-                name: localization.en.navigation,
+                name: sampleCauchyDistribution.t('navigation'),
                 icon: "icon-c-s",
                 datasetRequired: false,
                 modal: config.id
             }
         }
         super(config, objects, content);
-        this.help = localization.en.help;
+        
+        this.help = {
+            title: sampleCauchyDistribution.t('help.title'),
+            r_help: "help(data,package='utils')",
+            body: sampleCauchyDistribution.t('help.body')
+        }
+;
     }
 }
-module.exports.item = new sampleCauchyDistribution().render()
+
+module.exports = {
+    render: () => new sampleCauchyDistribution().render()
+}

@@ -1,117 +1,17 @@
 
-var localization = {
-    en: {
-        title: "Sample from Hypergeometric Distribution",
-        navigation: "Sample from Hypergeometric Distribution",
-        entrdsname: "Enter name for dataset",
-        m: "m (number of white balls in the urn)",
-        n: "n (number of black balls in the urn)",
-        k: "k (number of balls drawn from the urn)",
-        lblnoofsamples:  "Number of samples (rows)",
-        lblnoofobsv: "Number of observations (columns)",
-        lblseed: "Seed",
-        lblAddtoDS: "Add to dataset",
-        chklbl1:"Sample means",
-        chklbl2:"Sample sums",
-        chklbl3:"Sample standard deviations",
-        help: {
-            title: "Sample from Hypergeometric Distribution",
-            r_help: "help(rhyper, package=stats)",
-            body: `
 
-            <b>Description</b>
-            <br/>
-            Density, distribution function, quantile function and random generation for the hypergeometric distribution.
-            <br/>
-            <b>Usage</b>
-            <br/>
-            <code>
-                dhyper(x, m, n, k, log = FALSE)
-                <br/>
-                phyper(q, m, n, k, lower.tail = TRUE, log.p = FALSE)
-                <br/>
-                qhyper(p, m, n, k, lower.tail = TRUE, log.p = FALSE)
-                <br/>
-                rhyper(nn, m, n, k)
-                <br/>
-            </code>
-            <br/>
-            <b>Arguments</b>
-            <br/>
-            <ul>
-                <li>x, q : vector of quantiles representing the number of white balls drawn without replacement from an urn which contains both black and white balls.</li>
-                
-                
-                <li>m : the number of white balls in the urn.</li>
-                
-                
-                <li>n : the number of black balls in the urn.</li>
-                
-                
-                <li>k : the number of balls drawn from the urn.</li>
-                
-                
-                <li>p : probability, it must be between 0 and 1.</li>
-                
-                
-                <li>nn : number of observations. If length(nn) > 1, the length is taken to be the number required.</li>
-                
-                
-                <li>log, log.p : logical; if TRUE, probabilities p are given as log(p).</li>
-                
-                
-                <li>lower.tail : logical; if TRUE (default), probabilities are P[X ≤ x], otherwise, P[X > x].</li>
-            </ul>
-            
-            
-            
-            <br/>
-            <b>Details</b>
-            <br/>
-            The hypergeometric distribution is used for sampling without replacement. The density of this distribution with parameters m, n and k (named Np, N-Np, and n, respectively in the reference below) is given by
-            <br/>
-            <code>
-                p(x) = choose(m, x) choose(n, k-x) / choose(m+n, k)
-                for x = 0, …, k.
-            </code>
-            <br/>
-            Note that p(x) is non-zero only for max(0, k-n) <= x <= min(k, m).
-            <br/>
-            With p := m/(m+n) (hence Np = N \times p in the reference's notation), the first two moments are mean
-            <br/>
-            <code>E[X] = μ = k p</code>
-            <br/>
-            and variance
-            <br/>
-            <code>Var(X) = k p (1 - p) * (m+n-k)/(m+n-1),</code>
-            <br/>
-            which shows the closeness to the Binomial(k,p) (where the hypergeometric has smaller variance unless k = 1).
-            <br/>
-            The quantile is defined as the smallest value x such that F(x) ≥ p, where F is the distribution function.
-            <br/>
-            If one of m, n, k, exceeds .Machine$integer.max, currently the equivalent of qhyper(runif(nn), m,n,k) is used, when a binomial approximation may be considerably more efficient.
-            <br/>
-            <br/><b>Value</b>
-            <br/>
-            dhyper gives the density, phyper gives the distribution function, qhyper gives the quantile function, and rhyper generates random deviates.
-            <br/>
-            Invalid arguments will result in return value NaN, with a warning.
-            <br/>
-            The length of the result is determined by n for rhyper, and is the maximum of the lengths of the numerical arguments for the other functions.
-            <br/>
-            The numerical arguments other than n are recycled to the length of the result. Only the first elements of the logical arguments are used.            
-`}
-    }
-}
 
 
 
 
 class sampleHypergeometricDistribution extends baseModal {
+    static dialogId = 'sampleHypergeometricDistribution'
+    static t = baseModal.makeT(sampleHypergeometricDistribution.dialogId)
+
     constructor() {
         var config = {
-            id: "sampleHypergeometricDistribution",
-            label: localization.en.title,
+            id: sampleHypergeometricDistribution.dialogId,
+            label: sampleHypergeometricDistribution.t('title'),
             modalType: "one",
             RCode: `
             base::set.seed({{selected.seedval | safe}})
@@ -142,7 +42,7 @@ class sampleHypergeometricDistribution extends baseModal {
             datasetname: {
                 el: new input(config, {
                     no: 'datasetname',
-                    label: localization.en.entrdsname,
+                    label: sampleHypergeometricDistribution.t('entrdsname'),
                     required: true,
                     placeholder: "HypergeometricSamples",
                     extraction: "TextAsIs",
@@ -154,7 +54,7 @@ class sampleHypergeometricDistribution extends baseModal {
             m: {
                 el: new input(config, {
                     no: 'm',
-                    label: localization.en.m,
+                    label: sampleHypergeometricDistribution.t('m'),
                     required: true,
                     placeholder: "1",
                     allow_spaces:true,
@@ -166,7 +66,7 @@ class sampleHypergeometricDistribution extends baseModal {
             n: {
                 el: new input(config, {
                     no: 'n',
-                    label: localization.en.n,
+                    label: sampleHypergeometricDistribution.t('n'),
                     required: true,
                     placeholder: "1",
                     allow_spaces:true,
@@ -178,7 +78,7 @@ class sampleHypergeometricDistribution extends baseModal {
             k: {
                 el: new input(config, {
                     no: 'k',
-                    label: localization.en.k,
+                    label: sampleHypergeometricDistribution.t('k'),
                     required: true,
                     placeholder: "1",
                     allow_spaces:true,
@@ -190,7 +90,7 @@ class sampleHypergeometricDistribution extends baseModal {
             noofsamples: {
                 el: new inputSpinner(config, {
                     no: 'noofsamples',
-                    label: localization.en.lblnoofsamples,
+                    label: sampleHypergeometricDistribution.t('lblnoofsamples'),
                     min: 1,
                     max: 9999999,
                     step: 1,
@@ -202,7 +102,7 @@ class sampleHypergeometricDistribution extends baseModal {
             noofobsrv: {
                 el: new inputSpinner(config, {
                     no: 'noofobsrv',
-                    label: localization.en.lblnoofobsv,
+                    label: sampleHypergeometricDistribution.t('lblnoofobsv'),
                     min: 1,
                     max: 9999999,
                     step: 1,
@@ -214,7 +114,7 @@ class sampleHypergeometricDistribution extends baseModal {
             seedval: {
                 el: new inputSpinner(config, {
                     no: 'seedval',
-                    label: localization.en.lblseed,
+                    label: sampleHypergeometricDistribution.t('lblseed'),
                     min: 1,
                     max: 9999999,
                     step: 1,
@@ -223,10 +123,10 @@ class sampleHypergeometricDistribution extends baseModal {
                     extraction: "NoPrefix|UseComma"
                 })
             },                         
-            labelAddToDs: { el: new labelVar(config, { label: localization.en.lblAddtoDS, style: "mt-3",h: 5 }) },
-            smplmeans: { el: new checkbox(config, { label: localization.en.chklbl1, no: "smplmeans", state:"checked", extraction: "Boolean", newline: true }) },
-            smplsums: { el: new checkbox(config, { label: localization.en.chklbl2, no: "smplsums", extraction: "Boolean", newline: true}) },
-            smplsd: { el: new checkbox(config, { label: localization.en.chklbl3, no: "smplsd", extraction: "Boolean", newline: true}) },
+            labelAddToDs: { el: new labelVar(config, { label: sampleHypergeometricDistribution.t('lblAddtoDS'), style: "mt-3",h: 5 }) },
+            smplmeans: { el: new checkbox(config, { label: sampleHypergeometricDistribution.t('chklbl1'), no: "smplmeans", state:"checked", extraction: "Boolean", newline: true }) },
+            smplsums: { el: new checkbox(config, { label: sampleHypergeometricDistribution.t('chklbl2'), no: "smplsums", extraction: "Boolean", newline: true}) },
+            smplsd: { el: new checkbox(config, { label: sampleHypergeometricDistribution.t('chklbl3'), no: "smplsd", extraction: "Boolean", newline: true}) },
         }
         const content = {
             items: [objects.datasetname.el.content, objects.m.el.content, objects.n.el.content, objects.k.el.content,
@@ -234,14 +134,23 @@ class sampleHypergeometricDistribution extends baseModal {
                 objects.labelAddToDs.el.content, objects.smplmeans.el.content, objects.smplsums.el.content, objects.smplsd.el.content
             ],
             nav: {
-                name: localization.en.navigation,
+                name: sampleHypergeometricDistribution.t('navigation'),
                 icon: "icon-curve-s",
                 datasetRequired: false,
                 modal: config.id
             }
         }
         super(config, objects, content);
-        this.help = localization.en.help;
+        
+        this.help = {
+            title: sampleHypergeometricDistribution.t('help.title'),
+            r_help: "help(data,package='utils')",
+            body: sampleHypergeometricDistribution.t('help.body')
+        }
+;
     }
 }
-module.exports.item = new sampleHypergeometricDistribution().render()
+
+module.exports = {
+    render: () => new sampleHypergeometricDistribution().render()
+}

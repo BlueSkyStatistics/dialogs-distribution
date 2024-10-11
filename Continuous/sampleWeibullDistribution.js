@@ -1,101 +1,17 @@
 
-var localization = {
-    en: {
-        title: "Sample from Weibull Distribution",
-        navigation: "Sample from Weibull Distribution",
-        entrdsname: "Enter name for dataset",
-        shape: "Shape",
-        scale: "Scale",
-        lblnoofsamples:  "Number of samples (rows)",
-        lblnoofobsv: "Number of observations (columns)",
-        lblseed: "Seed",
-        lblAddtoDS: "Add to dataset",
-        chklbl1:"Sample means",
-        chklbl2:"Sample sums",
-        chklbl3:"Sample standard deviations",
-        help: {
-            title: "Sample from Weibull Distribution",
-            r_help: "help(rweibull, package=stats)",
-            body: `
-            ​​
-            <b>Description</b>
-            <br/>
-            Density, distribution function, quantile function and random generation for the Weibull distribution with parameters shape and scale.
-            <br/>
-            <b>Usage</b>
-            <br/>
-            <code>
-                dweibull(x, shape, scale = 1, log = FALSE)
-                <br/>
-                pweibull(q, shape, scale = 1, lower.tail = TRUE, log.p = FALSE)
-                <br/>
-                qweibull(p, shape, scale = 1, lower.tail = TRUE, log.p = FALSE)
-                <br/>
-                rweibull(n, shape, scale = 1)
-                <br/>
-            </code>
-            <br/>
-            <b>Arguments</b>
-            <br/>
-            <ul>
-                <li>x, q : vector of quantiles.</li>
-                
-                
-                <li>p : vector of probabilities.</li>
-                
-                
-                <li>n : number of observations. If length(n) > 1, the length is taken to be the number required.</li>
-                
-                
-                <li>shape, scale : shape and scale parameters, the latter defaulting to 1.</li>
-                
-                
-                <li>log, log.p : logical; if TRUE, probabilities p are given as log(p).</li>
-                
-                
-                <li>lower.tail : logical; if TRUE (default), probabilities are P[X ≤ x], otherwise, P[X > x].</li>
-            </ul>
-            
-            
-            
-            <br/>
-            <b>Details</b>
-            <br/>
-            The Weibull distribution with shape parameter a and scale parameter b has density given by
-            <br/>
-            <code>f(x) = (a/b) (x/b)^(a-1) exp(- (x/b)^a)</code>
-            <br/>
-            for x > 0. The cumulative distribution function is F(x) = 1 - exp(- (x/b)^a) on x > 0, the mean is E(X) = b Γ(1 + 1/a), and the Var(X) = b^2 * (Γ(1 + 2/a) - (Γ(1 + 1/a))^2).
-            <br/>
-            <br/><b>Value</b>
-            <br/>
-            dweibull gives the density, pweibull gives the distribution function, qweibull gives the quantile function, and rweibull generates random deviates.
-            <br/>
-            Invalid arguments will result in return value NaN, with a warning.
-            <br/>
-            The length of the result is determined by n for rweibull, and is the maximum of the lengths of the numerical arguments for the other functions.
-            <br/>
-            The numerical arguments other than n are recycled to the length of the result. Only the first elements of the logical arguments are used.
-            <br/>
-            <br/><b>Note</b>
-            <br/>
-            The cumulative hazard <code>H(t) = - log(1 - F(t))</code> is
-            <br/>
-            -pweibull(t, a, b, lower = FALSE, log = TRUE)
-            
-            which is just <code>H(t) = (t/b)^a</code>.            
-`}  
-    }
-}
+
 
 
 
 
 class sampleWeibullDistribution extends baseModal {
+    static dialogId = 'sampleWeibullDistribution'
+    static t = baseModal.makeT(sampleWeibullDistribution.dialogId)
+
     constructor() {
         var config = {
-            id: "sampleWeibullDistribution",
-            label: localization.en.title,
+            id: sampleWeibullDistribution.dialogId,
+            label: sampleWeibullDistribution.t('title'),
             modalType: "one",
             RCode: `
             base::set.seed({{selected.seedval | safe}})
@@ -126,7 +42,7 @@ class sampleWeibullDistribution extends baseModal {
             datasetname: {
                 el: new input(config, {
                     no: 'datasetname',
-                    label: localization.en.entrdsname,
+                    label: sampleWeibullDistribution.t('entrdsname'),
                     required: true,
                     placeholder: "WeibullSamples",
                     extraction: "TextAsIs",
@@ -138,7 +54,7 @@ class sampleWeibullDistribution extends baseModal {
             shape: {
                 el: new input(config, {
                     no: 'shape',
-                    label: localization.en.shape,
+                    label: sampleWeibullDistribution.t('shape'),
                     required: true,
                     placeholder: "",
                     allow_spaces:true,
@@ -150,7 +66,7 @@ class sampleWeibullDistribution extends baseModal {
             scale: {
                 el: new input(config, {
                     no: 'scale',
-                    label: localization.en.scale,
+                    label: sampleWeibullDistribution.t('scale'),
                     required: true,
                     placeholder: "1",
                     allow_spaces:true,
@@ -162,7 +78,7 @@ class sampleWeibullDistribution extends baseModal {
             noofsamples: {
                 el: new inputSpinner(config, {
                     no: 'noofsamples',
-                    label: localization.en.lblnoofsamples,
+                    label: sampleWeibullDistribution.t('lblnoofsamples'),
                     min: 1,
                     max: 9999999,
                     step: 1,
@@ -174,7 +90,7 @@ class sampleWeibullDistribution extends baseModal {
             noofobsrv: {
                 el: new inputSpinner(config, {
                     no: 'noofobsrv',
-                    label: localization.en.lblnoofobsv,
+                    label: sampleWeibullDistribution.t('lblnoofobsv'),
                     min: 1,
                     max: 9999999,
                     step: 1,
@@ -186,7 +102,7 @@ class sampleWeibullDistribution extends baseModal {
             seedval: {
                 el: new inputSpinner(config, {
                     no: 'seedval',
-                    label: localization.en.lblseed,
+                    label: sampleWeibullDistribution.t('lblseed'),
                     min: 1,
                     max: 9999999,
                     step: 1,
@@ -195,10 +111,10 @@ class sampleWeibullDistribution extends baseModal {
                     extraction: "NoPrefix|UseComma"
                 })
             },                         
-            labelAddToDs: { el: new labelVar(config, { label: localization.en.lblAddtoDS, style: "mt-3",h: 5 }) },
-            smplmeans: { el: new checkbox(config, { label: localization.en.chklbl1, no: "smplmeans", state:"checked", extraction: "Boolean", newline: true }) },
-            smplsums: { el: new checkbox(config, { label: localization.en.chklbl2, no: "smplsums", extraction: "Boolean", newline: true}) },
-            smplsd: { el: new checkbox(config, { label: localization.en.chklbl3, no: "smplsd", extraction: "Boolean", newline: true}) },
+            labelAddToDs: { el: new labelVar(config, { label: sampleWeibullDistribution.t('lblAddtoDS'), style: "mt-3",h: 5 }) },
+            smplmeans: { el: new checkbox(config, { label: sampleWeibullDistribution.t('chklbl1'), no: "smplmeans", state:"checked", extraction: "Boolean", newline: true }) },
+            smplsums: { el: new checkbox(config, { label: sampleWeibullDistribution.t('chklbl2'), no: "smplsums", extraction: "Boolean", newline: true}) },
+            smplsd: { el: new checkbox(config, { label: sampleWeibullDistribution.t('chklbl3'), no: "smplsd", extraction: "Boolean", newline: true}) },
         }
         const content = {
             items: [objects.datasetname.el.content, objects.shape.el.content, objects.scale.el.content, 
@@ -206,14 +122,23 @@ class sampleWeibullDistribution extends baseModal {
                 objects.labelAddToDs.el.content, objects.smplmeans.el.content, objects.smplsums.el.content, objects.smplsd.el.content
             ],
             nav: {
-                name: localization.en.navigation,
+                name: sampleWeibullDistribution.t('navigation'),
                 icon: "icon-weibull_distribution-s",
                 datasetRequired: false,
                 modal: config.id
             }
         }
         super(config, objects, content);
-        this.help = localization.en.help;
+        
+        this.help = {
+            title: sampleWeibullDistribution.t('help.title'),
+            r_help: "help(data,package='utils')",
+            body: sampleWeibullDistribution.t('help.body')
+        }
+;
     }
 }
-module.exports.item = new sampleWeibullDistribution().render()
+
+module.exports = {
+    render: () => new sampleWeibullDistribution().render()
+}

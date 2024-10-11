@@ -1,103 +1,17 @@
 
-var localization = {
-    en: {
-        title: "Sample from Poisson Distribution",
-        navigation: "Sample from Poisson Distribution",
-        entrdsname: "Enter name for dataset",
-        lambda: "Mean",
-        lblnoofsamples:  "Number of samples (rows)",
-        lblnoofobsv: "Number of observations (columns)",
-        lblseed: "Seed",
-        lblAddtoDS: "Add to dataset",
-        chklbl1:"Sample means",
-        chklbl2:"Sample sums",
-        chklbl3:"Sample standard deviations",
-        help: {
-            title: "Sample from Poisson Distribution",
-            r_help: "help(rpois, package=stats)",
-            body: `
 
-            <b>Description</b>
-            <br/>
-            Density, distribution function, quantile function and random generation for the Poisson distribution with parameter lambda.
-            <br/>
-            <b>Usage</b>
-            <br/>
-            <code>
-                dpois(x, lambda, log = FALSE)
-                <br/>
-                ppois(q, lambda, lower.tail = TRUE, log.p = FALSE)
-                <br/>
-                qpois(p, lambda, lower.tail = TRUE, log.p = FALSE)
-                <br/>
-                rpois(n, lambda)
-                <br/>
-            </code>
-            <br/>
-            <b>Arguments</b>
-            <br/>
-            <ul>
-                <li>x : vector of (non-negative integer) quantiles.</li>
-                
-                
-                <li>q : vector of quantiles.</li>
-                
-                
-                <li>p : vector of probabilities.</li>
-                
-                
-                <li>n : number of random values to return.</li>
-                
-                
-                <li>lambda : vector of (non-negative) means.</li>
-                
-                
-                <li>log, log.p : logical; if TRUE, probabilities p are given as log(p).</li>
-                
-                
-                <li>lower.tail : logical; if TRUE (default), probabilities are P[X ≤ x], otherwise, P[X > x].</li>
-            </ul>
-            
-            
-            
-            <br/>
-            <b>Details</b>
-            <br/>
-            The Poisson distribution has density
-            <br/>
-            <code>p(x) = λ^x exp(-λ)/x!</code>
-            <br/>
-            for x = 0, 1, 2, … . The mean and variance are E(X) = Var(X) = λ.
-            <br/>
-            Note that λ = 0 is really a limit case (setting 0^0 = 1) resulting in a point mass at 0, see also the example.
-            <br/>
-            If an element of x is not integer, the result of dpois is zero, with a warning. p(x) is computed using Loader's algorithm, see the reference in dbinom.
-            <br/>
-            The quantile is right continuous: qpois(p, lambda) is the smallest integer x such that P(X ≤ x) ≥ p.
-            <br/>
-            Setting lower.tail = FALSE allows to get much more precise results when the default, lower.tail = TRUE would return 1, see the example below.
-            <br/>
-            <br/><b>Value</b>
-            <br/>
-            dpois gives the (log) density, ppois gives the (log) distribution function, qpois gives the quantile function, and rpois generates random deviates.
-            <br/>
-            Invalid lambda will result in return value NaN, with a warning.
-            <br/>
-            The length of the result is determined by n for rpois, and is the maximum of the lengths of the numerical arguments for the other functions.
-            <br/>
-            The numerical arguments other than n are recycled to the length of the result. Only the first elements of the logical arguments are used.            
-`}
-    }
-}
 
 
 
 
 class samplePoissonDistribution extends baseModal {
+    static dialogId = 'samplePoissonDistribution'
+    static t = baseModal.makeT(samplePoissonDistribution.dialogId)
+
     constructor() {
         var config = {
-            id: "samplePoissonDistribution",
-            label: localization.en.title,
+            id: samplePoissonDistribution.dialogId,
+            label: samplePoissonDistribution.t('title'),
             modalType: "one",
             RCode: `
             base::set.seed({{selected.seedval | safe}})
@@ -128,7 +42,7 @@ class samplePoissonDistribution extends baseModal {
             datasetname: {
                 el: new input(config, {
                     no: 'datasetname',
-                    label: localization.en.entrdsname,
+                    label: samplePoissonDistribution.t('entrdsname'),
                     required: true,
                     placeholder: "PoissonSamples",
                     extraction: "TextAsIs",
@@ -140,7 +54,7 @@ class samplePoissonDistribution extends baseModal {
             lambda: {
                 el: new input(config, {
                     no: 'lambda',
-                    label: localization.en.lambda,
+                    label: samplePoissonDistribution.t('lambda'),
                     required: true,
                     placeholder: "1",
                     allow_spaces:true,
@@ -152,7 +66,7 @@ class samplePoissonDistribution extends baseModal {
             noofsamples: {
                 el: new inputSpinner(config, {
                     no: 'noofsamples',
-                    label: localization.en.lblnoofsamples,
+                    label: samplePoissonDistribution.t('lblnoofsamples'),
                     min: 1,
                     max: 9999999,
                     step: 1,
@@ -164,7 +78,7 @@ class samplePoissonDistribution extends baseModal {
             noofobsrv: {
                 el: new inputSpinner(config, {
                     no: 'noofobsrv',
-                    label: localization.en.lblnoofobsv,
+                    label: samplePoissonDistribution.t('lblnoofobsv'),
                     min: 1,
                     max: 9999999,
                     step: 1,
@@ -176,7 +90,7 @@ class samplePoissonDistribution extends baseModal {
             seedval: {
                 el: new inputSpinner(config, {
                     no: 'seedval',
-                    label: localization.en.lblseed,
+                    label: samplePoissonDistribution.t('lblseed'),
                     min: 1,
                     max: 9999999,
                     step: 1,
@@ -185,10 +99,10 @@ class samplePoissonDistribution extends baseModal {
                     extraction: "NoPrefix|UseComma"
                 })
             },                         
-            labelAddToDs: { el: new labelVar(config, { label: localization.en.lblAddtoDS, style: "mt-3",h: 5 }) },
-            smplmeans: { el: new checkbox(config, { label: localization.en.chklbl1, no: "smplmeans", state:"checked", extraction: "Boolean", newline: true }) },
-            smplsums: { el: new checkbox(config, { label: localization.en.chklbl2, no: "smplsums", extraction: "Boolean", newline: true}) },
-            smplsd: { el: new checkbox(config, { label: localization.en.chklbl3, no: "smplsd", extraction: "Boolean", newline: true}) },
+            labelAddToDs: { el: new labelVar(config, { label: samplePoissonDistribution.t('lblAddtoDS'), style: "mt-3",h: 5 }) },
+            smplmeans: { el: new checkbox(config, { label: samplePoissonDistribution.t('chklbl1'), no: "smplmeans", state:"checked", extraction: "Boolean", newline: true }) },
+            smplsums: { el: new checkbox(config, { label: samplePoissonDistribution.t('chklbl2'), no: "smplsums", extraction: "Boolean", newline: true}) },
+            smplsd: { el: new checkbox(config, { label: samplePoissonDistribution.t('chklbl3'), no: "smplsd", extraction: "Boolean", newline: true}) },
         }
         const content = {
             items: [objects.datasetname.el.content, objects.lambda.el.content, 
@@ -196,14 +110,23 @@ class samplePoissonDistribution extends baseModal {
                 objects.labelAddToDs.el.content, objects.smplmeans.el.content, objects.smplsums.el.content, objects.smplsd.el.content
             ],
             nav: {
-                name: localization.en.navigation,
+                name: samplePoissonDistribution.t('navigation'),
                 icon: "icon-fish-s",
                 datasetRequired: false,
                 modal: config.id
             }
         }
         super(config, objects, content);
-        this.help = localization.en.help;
+        
+        this.help = {
+            title: samplePoissonDistribution.t('help.title'),
+            r_help: "help(data,package='utils')",
+            body: samplePoissonDistribution.t('help.body')
+        }
+;
     }
 }
-module.exports.item = new samplePoissonDistribution().render()
+
+module.exports = {
+    render: () => new samplePoissonDistribution().render()
+}

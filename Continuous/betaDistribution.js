@@ -1,116 +1,14 @@
 
-var localization = {
-    en: {
-        title: "Beta Distribution Plot",
-        navigation: "Beta Distribution Plot",
-        shape1: "Shape 1",
-        shape2: "Shape 2",
-        pdenfun: "Plot density function",
-        pdstfun: "Plot distribution function",
-        lblregions: "Optionally specify regions under the density function by",
-        xvals : "x-values",
-        quantiles : "quantiles",
-        lblRegFill : "Regions to fill (specify one or two, or leave blank)",
-        lblreg1 : "Region 1 :",
-        lblreg2 : "Region 2 :",
-        lblregfrm : "From",
-        lblregto : "To",
-        lblregcol : "Color",
-        lblLegPos: "Position of legend",
-        toprt: "Top right",
-        toplt: "Top left",
-        topmid: "Top center",
-        help: {
-            title: "Beta Distribution Plot",
-            r_help: "help(qbeta, package=stats)",
-            body: `
-            <b>Description</b>
-<br/>
-Density, distribution function, quantile function and random generation for the Beta distribution with parameters shape1 and shape2 (and optional non-centrality parameter ncp).
-<br/>
-<b>Usage</b>
-<br/>
-<code>
-    dbeta(x, shape1, shape2, ncp = 0, log = FALSE)
-    <br/>
-    pbeta(q, shape1, shape2, ncp = 0, lower.tail = TRUE, log.p = FALSE)
-    <br/>
-    qbeta(p, shape1, shape2, ncp = 0, lower.tail = TRUE, log.p = FALSE)
-    <br/>
-    rbeta(n, shape1, shape2, ncp = 0)
-    <br/>
-</code>
 
-<br/><b>Arguments</b>
-<br/>
-<ul>
-    <li>x, q : vector of quantiles.</li>
-    
-    
-    <li>p : vector of probabilities.</li>
-    
-    
-    <li>n : number of observations. If length(n) > 1, the length is taken to be the number required.</li>
-    
-    
-    <li>shape1, shape2 : non-negative parameters of the Beta distribution.</li>
-    
-    
-    <li>ncp : non-centrality parameter.</li>
-    
-    
-    <li>log, log.p : logical; if TRUE, probabilities p are given as log(p).</li>
-    
-    
-    <li>lower.tail : logical; if TRUE (default), probabilities are P[X ≤ x], otherwise, P[X > x].</li>
-    
-</ul>
-
-
-
-<br/>
-<b>Details</b>
-<br/>
-The Beta distribution with parameters shape1 = a and shape2 = b has density
-<br/>
-<code>Γ(a+b)/(Γ(a)Γ(b))x^(a-1)(1-x)^(b-1)</code>
-<br/>
-for a > 0, b > 0 and 0 ≤ x ≤ 1 where the boundary values at x=0 or x=1 are defined as by continuity (as limits). 
-<br/>
- The mean is a/(a+b) and the variance is ab/((a+b)^2 (a+b+1)). These moments and all distributional properties can be defined as limits (leading to point masses at 0, 1/2, or 1) when a or b are zero or infinite, and the corresponding [dpqr]beta() functions are defined correspondingly.
- <br/>
-pbeta is closely related to the incomplete beta function. As defined by Abramowitz and Stegun 6.6.1
-<br/>
-<code>B_x(a,b) = integral_0^x t^(a-1) (1-t)^(b-1) dt,</code>
-<br/>
-and 6.6.2 I_x(a,b) = B_x(a,b) / B(a,b) where B(a,b) = B_1(a,b) is the Beta function (beta).
-<br/>
-<code>I_x(a,b) is pbeta(x, a, b).</code>
-<br/>
-The noncentral Beta distribution (with ncp = λ) is defined (Johnson et al, 1995, pp. 502) as the distribution of X/(X+Y) where X ~ chi^2_2a(λ) and Y ~ chi^2_2b.
-<br/>
-<br/><b>Value</b>
-<br/>
-dbeta gives the density, pbeta the distribution function, qbeta the quantile function, and rbeta generates random deviates.
-<br/>
-Invalid arguments will result in return value NaN, with a warning.
-<br/>
-The length of the result is determined by n for rbeta, and is the maximum of the lengths of the numerical arguments for the other functions.
-<br/>
-The numerical arguments other than n are recycled to the length of the result. Only the first elements of the logical arguments are used.
-<br/>
-<br/><b>Note</b>
-<br/>
-Supplying ncp = 0 uses the algorithm for the non-central distribution, which is not the same algorithm used if ncp is omitted. This is to give consistent behaviour in extreme cases with values of ncp very near zero.
-`}
-    }
-}
 
 class betaDistributionPlot extends baseModal {
+    static dialogId = 'betaDistributionPlot'
+    static t = baseModal.makeT(betaDistributionPlot.dialogId)
+
     constructor() {
         var config = {
-            id: "betaDistributionPlot",
-            label: localization.en.title,
+            id: betaDistributionPlot.dialogId,
+            label: betaDistributionPlot.t('title'),
             modalType: "one",
             RCode: `
             local(
@@ -163,7 +61,7 @@ class betaDistributionPlot extends baseModal {
             shape1: {
                 el: new input(config, {
                     no: 'shape1',
-                    label: localization.en.shape1,
+                    label: betaDistributionPlot.t('shape1'),
                     required: true,
                     placeholder: "0",
                     allow_spaces:true,
@@ -175,7 +73,7 @@ class betaDistributionPlot extends baseModal {
             shape2: {
                 el: new input(config, {
                     no: 'shape2',
-                    label: localization.en.shape2,
+                    label: betaDistributionPlot.t('shape2'),
                     required: true,
                     placeholder: "0",
                     allow_spaces:true,
@@ -184,20 +82,20 @@ class betaDistributionPlot extends baseModal {
                     value: ""
                 })
             },
-            plotdenfun: { el: new radioButton(config, { label: localization.en.pdenfun, no: "a", increment: "TRUE", style:"mt-3", value: "TRUE", state: "checked", extraction: "ValueAsIs" }) },
-            plotdistfun: { el: new radioButton(config, { label: localization.en.pdstfun, no: "a", increment: "FALSE", value: "FALSE", state: "", extraction: "ValueAsIs" }) },
+            plotdenfun: { el: new radioButton(config, { label: betaDistributionPlot.t('pdenfun'), no: "a", increment: "TRUE", style:"mt-3", value: "TRUE", state: "checked", extraction: "ValueAsIs" }) },
+            plotdistfun: { el: new radioButton(config, { label: betaDistributionPlot.t('pdstfun'), no: "a", increment: "FALSE", value: "FALSE", state: "", extraction: "ValueAsIs" }) },
 
-            lblRegUndr: { el: new labelVar(config, { label: localization.en.lblregions, style: "mt-3",h: 5 }) },
-            xvalrad: { el: new radioButton(config, { label: localization.en.xvals, no: "b", increment: "TRUE", value: "TRUE", state: "checked", extraction: "ValueAsIs" }) },
-            quntlrad: { el: new radioButton(config, { label: localization.en.quantiles, no: "b", increment: "FALSE", value: "FALSE", state: "", extraction: "ValueAsIs" }) },
+            lblRegUndr: { el: new labelVar(config, { label: betaDistributionPlot.t('lblregions'), style: "mt-3",h: 5 }) },
+            xvalrad: { el: new radioButton(config, { label: betaDistributionPlot.t('xvals'), no: "b", increment: "TRUE", value: "TRUE", state: "checked", extraction: "ValueAsIs" }) },
+            quntlrad: { el: new radioButton(config, { label: betaDistributionPlot.t('quantiles'), no: "b", increment: "FALSE", value: "FALSE", state: "", extraction: "ValueAsIs" }) },
 
-            lblRegiFill: { el: new labelVar(config, { label: localization.en.lblRegFill, style: "mt-3",h: 5}) },
+            lblRegiFill: { el: new labelVar(config, { label: betaDistributionPlot.t('lblRegFill'), style: "mt-3",h: 5}) },
 
-            lblRegion1: { el: new labelVar(config, { label: localization.en.lblreg1, style: "mt-3",h: 6 }) },
+            lblRegion1: { el: new labelVar(config, { label: betaDistributionPlot.t('lblreg1'), style: "mt-3",h: 6 }) },
             reg1Frm: {
                 el: new input(config, {
                     no: 'reg1frm',
-                    label: localization.en.lblregfrm,
+                    label: betaDistributionPlot.t('lblregfrm'),
                     placeholder: "",
                     allow_spaces:true,
                     type : "numeric",
@@ -208,7 +106,7 @@ class betaDistributionPlot extends baseModal {
             reg1To: {
                 el: new input(config, {
                     no: 'reg1to',
-                    label: localization.en.lblregto,
+                    label: betaDistributionPlot.t('lblregto'),
                     placeholder: "",
                     allow_spaces:true,
                     type : "numeric",
@@ -219,7 +117,7 @@ class betaDistributionPlot extends baseModal {
             reg1Col: {
                 el: new colorInput(config, {
                     no: 'reg1col',
-                    label: localization.en.lblregcol,
+                    label: betaDistributionPlot.t('lblregcol'),
                     placeholder: "#BEBEBE",
                     allow_spaces:true,
                     type: "character",
@@ -228,11 +126,11 @@ class betaDistributionPlot extends baseModal {
                 })
             },            
 
-            lblRegion2: { el: new labelVar(config, { label: localization.en.lblreg2, style: "mt-3",h: 6 }) },
+            lblRegion2: { el: new labelVar(config, { label: betaDistributionPlot.t('lblreg2'), style: "mt-3",h: 6 }) },
             reg2Frm: {
                 el: new input(config, {
                     no: 'reg2frm',
-                    label: localization.en.lblregfrm,
+                    label: betaDistributionPlot.t('lblregfrm'),
                     placeholder: "",
                     allow_spaces:true,
                     type : "numeric",
@@ -243,7 +141,7 @@ class betaDistributionPlot extends baseModal {
             reg2To: {
                 el: new input(config, {
                     no: 'reg2to',
-                    label: localization.en.lblregto,
+                    label: betaDistributionPlot.t('lblregto'),
                     placeholder: "",
                     allow_spaces:true,
                     type : "numeric",
@@ -254,7 +152,7 @@ class betaDistributionPlot extends baseModal {
             reg2Col: {
                 el: new colorInput(config, {
                     no: 'reg2col',
-                    label: localization.en.lblregcol,
+                    label: betaDistributionPlot.t('lblregcol'),
                     placeholder: "#BEBEBE",
                     allow_spaces:true,
                     type: "character",
@@ -263,10 +161,10 @@ class betaDistributionPlot extends baseModal {
                 })
             },                           
 
-            lblLegposi: { el: new labelVar(config, { label: localization.en.lblLegPos, style: "mt-3",h: 5 }) },
-            toprtrad: { el: new radioButton(config, { label: localization.en.toprt, no: "c", increment: "TRUE", value: "topright", state: "checked", extraction: "ValueAsIs" }) },
-            topltrad: { el: new radioButton(config, { label: localization.en.toplt, no: "c", increment: "FALSE", value: "topleft", state: "", extraction: "ValueAsIs" }) },
-            topmidrad: { el: new radioButton(config, { label: localization.en.topmid, no: "c", increment: "FALSE", value: "top", state: "", extraction: "ValueAsIs" }) }
+            lblLegposi: { el: new labelVar(config, { label: betaDistributionPlot.t('lblLegPos'), style: "mt-3",h: 5 }) },
+            toprtrad: { el: new radioButton(config, { label: betaDistributionPlot.t('toprt'), no: "c", increment: "TRUE", value: "topright", state: "checked", extraction: "ValueAsIs" }) },
+            topltrad: { el: new radioButton(config, { label: betaDistributionPlot.t('toplt'), no: "c", increment: "FALSE", value: "topleft", state: "", extraction: "ValueAsIs" }) },
+            topmidrad: { el: new radioButton(config, { label: betaDistributionPlot.t('topmid'), no: "c", increment: "FALSE", value: "top", state: "", extraction: "ValueAsIs" }) }
         }
         const content = {
             items: [objects.shape1.el.content, objects.shape2.el.content, 
@@ -278,14 +176,23 @@ class betaDistributionPlot extends baseModal {
                 objects.lblLegposi.el.content, objects.toprtrad.el.content, objects.topltrad.el.content,objects.topmidrad.el.content
             ],
             nav: {
-                name: localization.en.navigation,
+                name: betaDistributionPlot.t('navigation'),
                 icon: "icon-beta_g",
                 datasetRequired: false,
                 modal: config.id
             }
         }
         super(config, objects, content);
-        this.help = localization.en.help;
+        
+        this.help = {
+            title: betaDistributionPlot.t('help.title'),
+            r_help: "help(data,package='utils')",
+            body: betaDistributionPlot.t('help.body')
+        }
+;
     }
 }
-module.exports.item = new betaDistributionPlot().render()
+
+module.exports = {
+    render: () => new betaDistributionPlot().render()
+}

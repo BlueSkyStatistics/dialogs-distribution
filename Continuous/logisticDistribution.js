@@ -1,110 +1,17 @@
 
-var localization = {
-    en: {
-        title: "Logistic Distribution Plot",
-        navigation: "Logistic Distribution Plot",
-        location: "Location",
-        scale: "Scale",
-        pdenfun: "Plot density function",
-        pdstfun: "Plot distribution function",
-        lblregions: "Optionally specify regions under the density function by",
-        xvals : "x-values",
-        quantiles : "quantiles",
-        lblRegFill : "Regions to fill (specify one or two, or leave blank)",
-        lblreg1 : "Region 1 :",
-        lblreg2 : "Region 2 :",
-        lblregfrm : "From",
-        lblregto : "To",
-        lblregcol : "Color",
-        lblLegPos: "Position of legend",
-        toprt: "Top right",
-        toplt: "Top left",
-        topmid: "Top center",
-        help: {
-            title: "Logistic Distribution Plot",
-            r_help: "help(qlogis, package=stats)",
-            body: `
-            ​​
-            <b>Description</b>
-            <br/>
-            Density, distribution function, quantile function and random generation for the logistic distribution with parameters location and scale.
-            <br/>
-            <b>Usage</b>
-            <br/>
-            <code>
-                dlogis(x, location = 0, scale = 1, log = FALSE)
-                <br/>
-                plogis(q, location = 0, scale = 1, lower.tail = TRUE, log.p = FALSE)
-                <br/>
-                qlogis(p, location = 0, scale = 1, lower.tail = TRUE, log.p = FALSE)
-                <br/>
-                rlogis(n, location = 0, scale = 1)
-                <br/>
-            </code>
-            <br/>
-            <b>Arguments</b>
-            <br/>
-            <ul>
-                <li>x, q : vector of quantiles.</li>
-                
-                
-                <li>p : vector of probabilities.</li>
-                
-                
-                <li>n : number of observations. If length(n) > 1, the length is taken to be the number required.</li>
-                
-                
-                <li>location, scale : location and scale parameters.</li>
-                
-                
-                <li>log, log.p : logical; if TRUE, probabilities p are given as log(p).</li>
-                
-                
-                <li>lower.tail : logical; if TRUE (default), probabilities are P[X ≤ x], otherwise, P[X > x].</li>
-            </ul>
-            
-            
-            
-            <br/>
-            <b>Details</b>
-            <br/>
-            If location or scale are omitted, they assume the default values of 0 and 1 respectively.
-            The Logistic distribution with location = m and scale = s has distribution function
-            <br/>
-            <code>F(x) = 1 / (1 + exp(-(x-m)/s))</code>
-            <br/>
-            and density
-            <br/>
-            <code>f(x) = 1/s exp((x-m)/s) (1 + exp((x-m)/s))^-2.</code>
-            <br/>
-            It is a long-tailed distribution with mean m and variance π^2 /3 s^2.
-            <br/>
-            <br/><b>Value</b>
-            <br/>
-            dlogis gives the density, plogis gives the distribution function, qlogis gives the quantile function, and rlogis generates random deviates.
-            <br/>
-            The length of the result is determined by n for rlogis, and is the maximum of the lengths of the numerical arguments for the other functions.
-            <br/>
-            The numerical arguments other than n are recycled to the length of the result. Only the first elements of the logical arguments are used.
-            <br/>
-            <br/><b>Note</b>
-            <br/>
-            qlogis(p) is the same as the well known ‘logit’ function, logit(p) = log(p/(1-p)), and plogis(x) has consequently been called the ‘inverse logit’.
-            <br/>
-            The distribution function is a rescaled hyperbolic tangent, plogis(x) == (1+ tanh(x/2))/2, and it is called a sigmoid function in contexts such as neural networks.
-            
-`} 
-    }
-}
+
 
 
 
 
 class logisticDistributionPlot extends baseModal {
+    static dialogId = 'logisticDistributionPlot'
+    static t = baseModal.makeT(logisticDistributionPlot.dialogId)
+
     constructor() {
         var config = {
-            id: "logisticDistributionPlot",
-            label: localization.en.title,
+            id: logisticDistributionPlot.dialogId,
+            label: logisticDistributionPlot.t('title'),
             modalType: "one",
             RCode: `
             local(
@@ -145,7 +52,7 @@ class logisticDistributionPlot extends baseModal {
             location: {
                 el: new input(config, {
                     no: 'location',
-                    label: localization.en.location,
+                    label: logisticDistributionPlot.t('location'),
                     required: true,
                     placeholder: "0",
                     allow_spaces:true,
@@ -157,7 +64,7 @@ class logisticDistributionPlot extends baseModal {
             scale: {
                 el: new input(config, {
                     no: 'scale',
-                    label: localization.en.scale,
+                    label: logisticDistributionPlot.t('scale'),
                     required: true,
                     placeholder: "1",
                     allow_spaces:true,
@@ -166,20 +73,20 @@ class logisticDistributionPlot extends baseModal {
                     value: "1"
                 })
             },
-            plotdenfun: { el: new radioButton(config, { label: localization.en.pdenfun, no: "a", increment: "TRUE", style:"mt-3", value: "TRUE", state: "checked", extraction: "ValueAsIs" }) },
-            plotdistfun: { el: new radioButton(config, { label: localization.en.pdstfun, no: "a", increment: "FALSE", value: "FALSE", state: "", extraction: "ValueAsIs" }) },
+            plotdenfun: { el: new radioButton(config, { label: logisticDistributionPlot.t('pdenfun'), no: "a", increment: "TRUE", style:"mt-3", value: "TRUE", state: "checked", extraction: "ValueAsIs" }) },
+            plotdistfun: { el: new radioButton(config, { label: logisticDistributionPlot.t('pdstfun'), no: "a", increment: "FALSE", value: "FALSE", state: "", extraction: "ValueAsIs" }) },
 
-            lblRegUndr: { el: new labelVar(config, { label: localization.en.lblregions, style: "mt-3",h: 5 }) },
-            xvalrad: { el: new radioButton(config, { label: localization.en.xvals, no: "b", increment: "TRUE", value: "TRUE", state: "checked", extraction: "ValueAsIs" }) },
-            quntlrad: { el: new radioButton(config, { label: localization.en.quantiles, no: "b", increment: "FALSE", value: "FALSE", state: "", extraction: "ValueAsIs" }) },
+            lblRegUndr: { el: new labelVar(config, { label: logisticDistributionPlot.t('lblregions'), style: "mt-3",h: 5 }) },
+            xvalrad: { el: new radioButton(config, { label: logisticDistributionPlot.t('xvals'), no: "b", increment: "TRUE", value: "TRUE", state: "checked", extraction: "ValueAsIs" }) },
+            quntlrad: { el: new radioButton(config, { label: logisticDistributionPlot.t('quantiles'), no: "b", increment: "FALSE", value: "FALSE", state: "", extraction: "ValueAsIs" }) },
 
-            lblRegiFill: { el: new labelVar(config, { label: localization.en.lblRegFill, style: "mt-3",h: 5}) },
+            lblRegiFill: { el: new labelVar(config, { label: logisticDistributionPlot.t('lblRegFill'), style: "mt-3",h: 5}) },
 
-            lblRegion1: { el: new labelVar(config, { label: localization.en.lblreg1, style: "mt-3",h: 6 }) },
+            lblRegion1: { el: new labelVar(config, { label: logisticDistributionPlot.t('lblreg1'), style: "mt-3",h: 6 }) },
             reg1Frm: {
                 el: new input(config, {
                     no: 'reg1frm',
-                    label: localization.en.lblregfrm,
+                    label: logisticDistributionPlot.t('lblregfrm'),
                     placeholder: "",
                     allow_spaces:true,
                     type : "numeric",
@@ -190,7 +97,7 @@ class logisticDistributionPlot extends baseModal {
             reg1To: {
                 el: new input(config, {
                     no: 'reg1to',
-                    label: localization.en.lblregto,
+                    label: logisticDistributionPlot.t('lblregto'),
                     placeholder: "",
                     allow_spaces:true,
                     type : "numeric",
@@ -201,7 +108,7 @@ class logisticDistributionPlot extends baseModal {
             reg1Col: {
                 el: new colorInput(config, {
                     no: 'reg1col',
-                    label: localization.en.lblregcol,
+                    label: logisticDistributionPlot.t('lblregcol'),
                     placeholder: "#BEBEBE",
                     allow_spaces:true,
                     type: "character",
@@ -210,11 +117,11 @@ class logisticDistributionPlot extends baseModal {
                 })
             },            
 
-            lblRegion2: { el: new labelVar(config, { label: localization.en.lblreg2, style: "mt-3",h: 6 }) },
+            lblRegion2: { el: new labelVar(config, { label: logisticDistributionPlot.t('lblreg2'), style: "mt-3",h: 6 }) },
             reg2Frm: {
                 el: new input(config, {
                     no: 'reg2frm',
-                    label: localization.en.lblregfrm,
+                    label: logisticDistributionPlot.t('lblregfrm'),
                     placeholder: "",
                     allow_spaces:true,
                     type : "numeric",
@@ -225,7 +132,7 @@ class logisticDistributionPlot extends baseModal {
             reg2To: {
                 el: new input(config, {
                     no: 'reg2to',
-                    label: localization.en.lblregto,
+                    label: logisticDistributionPlot.t('lblregto'),
                     placeholder: "",
                     allow_spaces:true,
                     type : "numeric",
@@ -236,7 +143,7 @@ class logisticDistributionPlot extends baseModal {
             reg2Col: {
                 el: new colorInput(config, {
                     no: 'reg2col',
-                    label: localization.en.lblregcol,
+                    label: logisticDistributionPlot.t('lblregcol'),
                     placeholder: "#BEBEBE",
                     allow_spaces:true,
                     type: "character",
@@ -245,10 +152,10 @@ class logisticDistributionPlot extends baseModal {
                 })
             },                           
 
-            lblLegposi: { el: new labelVar(config, { label: localization.en.lblLegPos, style: "mt-3",h: 5 }) },
-            toprtrad: { el: new radioButton(config, { label: localization.en.toprt, no: "c", increment: "TRUE", value: "topright", state: "checked", extraction: "ValueAsIs" }) },
-            topltrad: { el: new radioButton(config, { label: localization.en.toplt, no: "c", increment: "FALSE", value: "topleft", state: "", extraction: "ValueAsIs" }) },
-            topmidrad: { el: new radioButton(config, { label: localization.en.topmid, no: "c", increment: "FALSE", value: "top", state: "", extraction: "ValueAsIs" }) }
+            lblLegposi: { el: new labelVar(config, { label: logisticDistributionPlot.t('lblLegPos'), style: "mt-3",h: 5 }) },
+            toprtrad: { el: new radioButton(config, { label: logisticDistributionPlot.t('toprt'), no: "c", increment: "TRUE", value: "topright", state: "checked", extraction: "ValueAsIs" }) },
+            topltrad: { el: new radioButton(config, { label: logisticDistributionPlot.t('toplt'), no: "c", increment: "FALSE", value: "topleft", state: "", extraction: "ValueAsIs" }) },
+            topmidrad: { el: new radioButton(config, { label: logisticDistributionPlot.t('topmid'), no: "c", increment: "FALSE", value: "top", state: "", extraction: "ValueAsIs" }) }
         }
         const content = {
             items: [objects.location.el.content, objects.scale.el.content, 
@@ -260,14 +167,23 @@ class logisticDistributionPlot extends baseModal {
                 objects.lblLegposi.el.content, objects.toprtrad.el.content, objects.topltrad.el.content,objects.topmidrad.el.content
             ],
             nav: {
-                name: localization.en.navigation,
+                name: logisticDistributionPlot.t('navigation'),
                 icon: "icon-logistic_white_comp-g",
                 datasetRequired: false,
                 modal: config.id
             }
         }
         super(config, objects, content);
-        this.help = localization.en.help;
+        
+        this.help = {
+            title: logisticDistributionPlot.t('help.title'),
+            r_help: "help(data,package='utils')",
+            body: logisticDistributionPlot.t('help.body')
+        }
+;
     }
 }
-module.exports.item = new logisticDistributionPlot().render()
+
+module.exports = {
+    render: () => new logisticDistributionPlot().render()
+}
