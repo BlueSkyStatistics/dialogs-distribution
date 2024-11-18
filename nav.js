@@ -6,7 +6,7 @@ const nav = {
             "name": "Beta",
             "icon": "icon-beta",
             "children": [
-                "./Continuous/betaDistribution",
+                "./Continuous/betaDistributionPlot",
                 "./Continuous/betaProbabilities",
                 "./Continuous/betaQuantiles",
                 "./Continuous/sampleBetaDistribution"
@@ -16,7 +16,7 @@ const nav = {
             "name": "Binomial",
             "icon": "icon-binary-code",
             "children": [
-                "./Discrete/binomialDistribution",
+                "./Discrete/binomialDistributionPlot",
                 "./Discrete/binomialProbabilities",
                 "./Discrete/binomialQuantiles",
                 "./Discrete/binomialTailProbabilities",
@@ -27,7 +27,7 @@ const nav = {
             "name": "Cauchy",
             "icon": "icon-c",
             "children": [
-                "./Continuous/cauchyDistribution",
+                "./Continuous/cauchyDistributionPlot",
                 "./Continuous/cauchyProbabilities",
                 "./Continuous/cauchyQuantiles",
                 "./Continuous/sampleCauchyDistribution"
@@ -37,7 +37,7 @@ const nav = {
             "name": "Chi-squared",
             "icon": "icon-chi_squared",
             "children": [
-                "./Continuous/chisquaredDistribution",
+                "./Continuous/chisquaredDistributionPlot",
                 "./Continuous/chisquaredProbabilities",
                 "./Continuous/chisquaredQuantiles",
                 "./Continuous/sampleChisquaredDistribution"
@@ -47,7 +47,7 @@ const nav = {
             "name": "Exponential",
             "icon": "icon-letter-e",
             "children": [
-                "./Continuous/exponentialDistribution",                
+                "./Continuous/exponentialDistributionPlot",                
                 "./Continuous/exponentialProbabilities",
                 "./Continuous/exponentialQuantiles",
                 "./Continuous/sampleExponentialDistribution"
@@ -57,7 +57,7 @@ const nav = {
             "name": "F",
             "icon": "icon-f",
             "children": [
-                "./Continuous/fDistribution",
+                "./Continuous/fDistributionPlot",
                 "./Continuous/fProbabilities",
                 "./Continuous/fQuantiles",
                 "./Continuous/sampleFDistribution"
@@ -67,7 +67,7 @@ const nav = {
             "name": "Gamma",
             "icon": "icon-gamma",
             "children": [
-                "./Continuous/gammaDistribution",
+                "./Continuous/gammaDistributionPlot",
                 "./Continuous/gammaProbabilities",
                 "./Continuous/gammaQuantiles",
                 "./Continuous/sampleGammaDistribution"
@@ -88,7 +88,7 @@ const nav = {
             "name": "Gumbel",
             "icon": "icon-gumbel",
             "children": [
-                "./Continuous/gumbelDistribution",
+                "./Continuous/gumbelDistributionPlot",
                 "./Continuous/gumbelProbabilities",
                 "./Continuous/gumbelQuantiles",
                 "./Continuous/sampleGumbelDistribution"
@@ -98,7 +98,7 @@ const nav = {
             "name": "Hypergeometric",
             "icon": "icon-curve",
             "children": [
-                "./Discrete/hypergeometricDistribution",                
+                "./Discrete/hypergeometricDistributionPlot",                
                 "./Discrete/hypergeometricProbabilities",
                 "./Discrete/hypergeometricQuantiles",
                 "./Discrete/hypergeometricTailProbabilities",
@@ -109,9 +109,9 @@ const nav = {
             "name": "Logistic",
             "icon": "icon-logistic_white_comp",
             "children": [
-                "./Continuous/logisticDistribution",                
+                "./Continuous/logisticDistributionPlot",                
                 "./Continuous/logisticProbabilities",
-                "./Continuous/logisticQuantiles",
+                "./Continuous/glogisticQuantiles",
                 "./Continuous/sampleLogisticDistribution"
             ]
         },
@@ -119,7 +119,7 @@ const nav = {
             "name": "Lognormal",
             "icon": "icon-log-normal-distribution",
             "children": [
-                "./Continuous/lognormalDistribution",
+                "./Continuous/lognormalDistributionPlot",
                 "./Continuous/lognormalProbabilities",
                 "./Continuous/lognormalQuantiles",
                 "./Continuous/sampleLognormalDistribution"
@@ -129,7 +129,7 @@ const nav = {
             "name": "Negative Binomial",
             "icon": "icon-negtive-binary-code",
             "children": [
-                "./Discrete/negativeBinomialDistribution",
+                "./Discrete/negativeBinomialDistributionPlot",
                 "./Discrete/negativeBinomialProbabilities",
                 "./Discrete/negativeBinomialQuantiles",
                 "./Discrete/negativeBinomialTailProbabilities",
@@ -140,7 +140,7 @@ const nav = {
             "name": "Normal",
             "icon": "icon-gaussian-function",
             "children": [
-                "./Continuous/normalDistribution",
+                "./Continuous/normalDistributionPlot",
                 "./Continuous/normalProbabilities",
                 "./Continuous/normalQuantiles",
                 "./Continuous/sampleNormalDistribution"
@@ -150,7 +150,7 @@ const nav = {
             "name": "Poisson",
             "icon": "icon-fish",
             "children": [
-                "./Discrete/poissonDistribution",
+                "./Discrete/poissonDistributionPlot",
                 "./Discrete/poissonProbabilities",
                 "./Discrete/poissonQuantiles",
                 "./Discrete/poissonTailProbabilities",
@@ -161,7 +161,7 @@ const nav = {
             "name": "t",
             "icon": "icon-tumblr",
             "children": [
-                "./Continuous/tDistribution",
+                "./Continuous/tDistributionPlot",
                 "./Continuous/tProbabilities",
                 "./Continuous/tQuantiles",
                 "./Continuous/sampletDistribution"
@@ -171,7 +171,7 @@ const nav = {
             "name": "Uniform",
             "icon": "icon-rectangle",
             "children": [
-                "./Continuous/uniformDistribution",
+                "./Continuous/uniformDistributionPlot",
                 "./Continuous/uniformProbabilities",
                 "./Continuous/uniformQuantiles",
                 "./Continuous/sampleUniformDistribution"
@@ -181,7 +181,7 @@ const nav = {
             "name": "Weibull",
             "icon": "icon-weibull_distribution",
             "children": [
-                "./Continuous/weibullDistribution",
+                "./Continuous/weibullDistributionPlot",
                 "./Continuous/weibullProbabilities",
                 "./Continuous/weibullQuantiles",
                 "./Continuous/sampleWeibullDistribution"
