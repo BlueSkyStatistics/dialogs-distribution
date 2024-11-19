@@ -89,10 +89,10 @@ var localization = {
 
 
 
-class glogisticQuantiles extends baseModal {
+class logisticQuantiles extends baseModal {
     constructor() {
         var config = {
-            id: "glogisticQuantiles",
+            id: "logisticQuantiles",
             label: localization.en.title,
             modalType: "one",
             RCode: `
@@ -157,4 +157,4 @@ class glogisticQuantiles extends baseModal {
         this.help = localization.en.help;
     }
 }
-module.exports.item = new glogisticQuantiles().render()
+module.exports.item = new logisticQuantiles().render()
