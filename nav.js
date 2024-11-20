@@ -111,7 +111,7 @@ const nav = {
             "children": [
                 "./Continuous/logisticDistributionPlot",                
                 "./Continuous/logisticProbabilities",
-                "./Continuous/glogisticQuantiles",
+                "./Continuous/logisticQuantiles",
                 "./Continuous/sampleLogisticDistribution"
             ]
         },
