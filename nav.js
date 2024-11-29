@@ -1,22 +1,23 @@
-const nav = {
-    "name": "Distribution",
+let t = getT('menutoolbar')
+const nav = () => ({
+    "name": t('distribution_top_level_title'),// {ns: 'menutoolbar'}),
     "tab": "distribution",
     "buttons": [
         {
-            "name": "Beta",
+            "name": t('distribution_Beta'),// {ns: 'menutoolbar'}),
             "icon": "icon-beta",
             "children": [
-                "./Continuous/betaDistribution",
+                "./Continuous/betaDistributionPlot",
                 "./Continuous/betaProbabilities",
                 "./Continuous/betaQuantiles",
                 "./Continuous/sampleBetaDistribution"
             ]
         },
         {
-            "name": "Binomial",
+            "name": t('distribution_Binomial'),// {ns: 'menutoolbar'}),
             "icon": "icon-binary-code",
             "children": [
-                "./Discrete/binomialDistribution",
+                "./Discrete/binomialDistributionPlot",
                 "./Discrete/binomialProbabilities",
                 "./Discrete/binomialQuantiles",
                 "./Discrete/binomialTailProbabilities",
@@ -24,57 +25,57 @@ const nav = {
             ]
         },                
         {
-            "name": "Cauchy",
+            "name": t('distribution_Cauchy'),// {ns: 'menutoolbar'}),
             "icon": "icon-c",
             "children": [
-                "./Continuous/cauchyDistribution",
+                "./Continuous/cauchyDistributionPlot",
                 "./Continuous/cauchyProbabilities",
                 "./Continuous/cauchyQuantiles",
                 "./Continuous/sampleCauchyDistribution"
             ]
         },
         {
-            "name": "Chi-squared",
+            "name": t('distribution_Chi_squared'),// {ns: 'menutoolbar'}),
             "icon": "icon-chi_squared",
             "children": [
-                "./Continuous/chisquaredDistribution",
+                "./Continuous/chisquaredDistributionPlot",
                 "./Continuous/chisquaredProbabilities",
                 "./Continuous/chisquaredQuantiles",
                 "./Continuous/sampleChisquaredDistribution"
             ]
         },
         {
-            "name": "Exponential",
+            "name": t('distribution_Exponential'),// {ns: 'menutoolbar'}),
             "icon": "icon-letter-e",
             "children": [
-                "./Continuous/exponentialDistribution",                
+                "./Continuous/exponentialDistributionPlot",                
                 "./Continuous/exponentialProbabilities",
                 "./Continuous/exponentialQuantiles",
                 "./Continuous/sampleExponentialDistribution"
             ]
         },
         {
-            "name": "F",
+            "name": t('distribution_F'),// {ns: 'menutoolbar'}),
             "icon": "icon-f",
             "children": [
-                "./Continuous/fDistribution",
+                "./Continuous/fDistributionPlot",
                 "./Continuous/fProbabilities",
                 "./Continuous/fQuantiles",
                 "./Continuous/sampleFDistribution"
             ]
         },
         {
-            "name": "Gamma",
+            "name": t('distribution_Gamma'),// {ns: 'menutoolbar'}),
             "icon": "icon-gamma",
             "children": [
-                "./Continuous/gammaDistribution",
+                "./Continuous/gammaDistributionPlot",
                 "./Continuous/gammaProbabilities",
                 "./Continuous/gammaQuantiles",
                 "./Continuous/sampleGammaDistribution"
             ]
         },
         {
-            "name": "Geometric",
+            "name": t('distribution_Geometric'),// {ns: 'menutoolbar'}),
             "icon": "icon-area-chart",
             "children": [
                 "./Discrete/geometricDistribution",
@@ -85,20 +86,20 @@ const nav = {
             ]
         },                
         {
-            "name": "Gumbel",
+            "name": t('distribution_Gumbel'),// {ns: 'menutoolbar'}),
             "icon": "icon-gumbel",
             "children": [
-                "./Continuous/gumbelDistribution",
+                "./Continuous/gumbelDistributionPlot",
                 "./Continuous/gumbelProbabilities",
                 "./Continuous/gumbelQuantiles",
                 "./Continuous/sampleGumbelDistribution"
             ]
         },
         {
-            "name": "Hypergeometric",
+            "name": t('distribution_Hypergeometric'),// {ns: 'menutoolbar'}),
             "icon": "icon-curve",
             "children": [
-                "./Discrete/hypergeometricDistribution",                
+                "./Discrete/hypergeometricDistributionPlot",                
                 "./Discrete/hypergeometricProbabilities",
                 "./Discrete/hypergeometricQuantiles",
                 "./Discrete/hypergeometricTailProbabilities",
@@ -106,30 +107,30 @@ const nav = {
             ]
         },                 
         {
-            "name": "Logistic",
+            "name": t('distribution_Logistic'),// {ns: 'menutoolbar'}),
             "icon": "icon-logistic_white_comp",
             "children": [
-                "./Continuous/logisticDistribution",                
+                "./Continuous/logisticDistributionPlot",                
                 "./Continuous/logisticProbabilities",
                 "./Continuous/logisticQuantiles",
                 "./Continuous/sampleLogisticDistribution"
             ]
         },
         {
-            "name": "Lognormal",
+            "name": t('distribution_Lognormal'),// {ns: 'menutoolbar'}),
             "icon": "icon-log-normal-distribution",
             "children": [
-                "./Continuous/lognormalDistribution",
+                "./Continuous/lognormalDistributionPlot",
                 "./Continuous/lognormalProbabilities",
                 "./Continuous/lognormalQuantiles",
                 "./Continuous/sampleLognormalDistribution"
             ]
         },
         {
-            "name": "Negative Binomial",
+            "name": t('distribution_Negative_Binomial'),// {ns: 'menutoolbar'}),
             "icon": "icon-negtive-binary-code",
             "children": [
-                "./Discrete/negativeBinomialDistribution",
+                "./Discrete/negativeBinomialDistributionPlot",
                 "./Discrete/negativeBinomialProbabilities",
                 "./Discrete/negativeBinomialQuantiles",
                 "./Discrete/negativeBinomialTailProbabilities",
@@ -137,20 +138,20 @@ const nav = {
             ]
         },                 
         {
-            "name": "Normal",
+            "name": t('distribution_Normal'),// {ns: 'menutoolbar'}),
             "icon": "icon-gaussian-function",
             "children": [
-                "./Continuous/normalDistribution",
+                "./Continuous/normalDistributionPlot",
                 "./Continuous/normalProbabilities",
                 "./Continuous/normalQuantiles",
                 "./Continuous/sampleNormalDistribution"
             ]
         },
         {
-            "name": "Poisson",
+            "name": t('distribution_Poisson'),// {ns: 'menutoolbar'}),
             "icon": "icon-fish",
             "children": [
-                "./Discrete/poissonDistribution",
+                "./Discrete/poissonDistributionPlot",
                 "./Discrete/poissonProbabilities",
                 "./Discrete/poissonQuantiles",
                 "./Discrete/poissonTailProbabilities",
@@ -158,30 +159,30 @@ const nav = {
             ]
         },
         {
-            "name": "t",
+            "name": t('distribution_t'),// {ns: 'menutoolbar'}),
             "icon": "icon-tumblr",
             "children": [
-                "./Continuous/tDistribution",
+                "./Continuous/tDistributionPlot",
                 "./Continuous/tProbabilities",
                 "./Continuous/tQuantiles",
                 "./Continuous/sampletDistribution"
             ]
         },
         {
-            "name": "Uniform",
+            "name": t('distribution_Uniform'),// {ns: 'menutoolbar'}),
             "icon": "icon-rectangle",
             "children": [
-                "./Continuous/uniformDistribution",
+                "./Continuous/uniformDistributionPlot",
                 "./Continuous/uniformProbabilities",
                 "./Continuous/uniformQuantiles",
                 "./Continuous/sampleUniformDistribution"
             ]
         },
         {
-            "name": "Weibull",
+            "name": t('distribution_Weibull'),// {ns: 'menutoolbar'}),
             "icon": "icon-weibull_distribution",
             "children": [
-                "./Continuous/weibullDistribution",
+                "./Continuous/weibullDistributionPlot",
                 "./Continuous/weibullProbabilities",
                 "./Continuous/weibullQuantiles",
                 "./Continuous/sampleWeibullDistribution"
@@ -190,6 +191,9 @@ const nav = {
         
 
     ]           
-}
+})
 
-module.exports.nav = nav
+module.exports = {
+    nav: nav(),
+    render: () => nav()
+}
