@@ -62,7 +62,7 @@ class binomialProbabilities extends baseModal {
         
         this.help = {
             title: binomialProbabilities.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: binomialProbabilities.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: binomialProbabilities.t('help.body')
         }
 ;

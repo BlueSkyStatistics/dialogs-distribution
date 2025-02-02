@@ -75,7 +75,7 @@ class normalProbabilities extends baseModal {
         
         this.help = {
             title: normalProbabilities.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: normalProbabilities.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: normalProbabilities.t('help.body')
         }
 ;

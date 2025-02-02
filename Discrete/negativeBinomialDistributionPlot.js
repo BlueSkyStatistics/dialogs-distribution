@@ -83,7 +83,7 @@ class negativeBinomialDistributionPlot extends baseModal {
         
         this.help = {
             title: negativeBinomialDistributionPlot.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: negativeBinomialDistributionPlot.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: negativeBinomialDistributionPlot.t('help.body')
         }
 ;

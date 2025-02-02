@@ -75,7 +75,7 @@ class normalQuantiles extends baseModal {
         
         this.help = {
             title: normalQuantiles.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: normalQuantiles.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: normalQuantiles.t('help.body')
         }
 ;

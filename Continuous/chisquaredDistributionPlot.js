@@ -165,7 +165,7 @@ class chisquaredDistributionPlot extends baseModal {
         
         this.help = {
             title: chisquaredDistributionPlot.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: chisquaredDistributionPlot.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: chisquaredDistributionPlot.t('help.body')
         }
 ;

@@ -132,7 +132,7 @@ class sampleLogisticDistribution extends baseModal {
         
         this.help = {
             title: sampleLogisticDistribution.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: sampleLogisticDistribution.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: sampleLogisticDistribution.t('help.body')
         }
 ;

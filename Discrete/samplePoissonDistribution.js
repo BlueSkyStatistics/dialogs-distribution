@@ -120,7 +120,7 @@ class samplePoissonDistribution extends baseModal {
         
         this.help = {
             title: samplePoissonDistribution.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: samplePoissonDistribution.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: samplePoissonDistribution.t('help.body')
         }
 ;

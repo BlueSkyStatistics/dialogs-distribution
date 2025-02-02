@@ -75,7 +75,7 @@ class weibullProbabilities extends baseModal {
         
         this.help = {
             title: weibullProbabilities.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: weibullProbabilities.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: weibullProbabilities.t('help.body')
         }
 ;

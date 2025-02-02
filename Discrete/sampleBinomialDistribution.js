@@ -132,7 +132,7 @@ class sampleBinomialDistribution extends baseModal {
         
         this.help = {
             title: sampleBinomialDistribution.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: sampleBinomialDistribution.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: sampleBinomialDistribution.t('help.body')
         }
 ;

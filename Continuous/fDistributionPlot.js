@@ -177,7 +177,7 @@ class fDistributionPlot extends baseModal {
         
         this.help = {
             title: fDistributionPlot.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: fDistributionPlot.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: fDistributionPlot.t('help.body')
         }
 ;

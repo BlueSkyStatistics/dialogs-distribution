@@ -132,7 +132,7 @@ class sampleWeibullDistribution extends baseModal {
         
         this.help = {
             title: sampleWeibullDistribution.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: sampleWeibullDistribution.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: sampleWeibullDistribution.t('help.body')
         }
 ;

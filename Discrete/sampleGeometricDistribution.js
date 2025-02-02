@@ -120,7 +120,7 @@ class sampleGeometricDistribution extends baseModal {
         
         this.help = {
             title: sampleGeometricDistribution.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: sampleGeometricDistribution.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: sampleGeometricDistribution.t('help.body')
         }
 ;

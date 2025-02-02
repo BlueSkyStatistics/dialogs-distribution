@@ -50,7 +50,7 @@ class geometricProbabilities extends baseModal {
         
         this.help = {
             title: geometricProbabilities.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: geometricProbabilities.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: geometricProbabilities.t('help.body')
         }
 ;

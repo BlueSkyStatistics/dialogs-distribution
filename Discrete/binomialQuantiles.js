@@ -75,7 +75,7 @@ class binomialQuantiles extends baseModal {
         
         this.help = {
             title: binomialQuantiles.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: binomialQuantiles.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: binomialQuantiles.t('help.body')
         }
 ;

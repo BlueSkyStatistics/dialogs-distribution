@@ -120,7 +120,7 @@ class sampleExponentialDistribution extends baseModal {
         
         this.help = {
             title: sampleExponentialDistribution.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: sampleExponentialDistribution.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: sampleExponentialDistribution.t('help.body')
         }
 ;

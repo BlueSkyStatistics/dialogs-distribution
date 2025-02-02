@@ -75,7 +75,7 @@ class gammaQuantiles extends baseModal {
         
         this.help = {
             title: gammaQuantiles.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: gammaQuantiles.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: gammaQuantiles.t('help.body')
         }
 ;

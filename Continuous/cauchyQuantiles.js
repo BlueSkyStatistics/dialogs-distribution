@@ -75,7 +75,7 @@ class cauchyQuantiles extends baseModal {
         
         this.help = {
             title: cauchyQuantiles.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: cauchyQuantiles.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: cauchyQuantiles.t('help.body')
         }
 ;

@@ -71,7 +71,7 @@ class geometricDistribution extends baseModal {
         
         this.help = {
             title: geometricDistribution.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: geometricDistribution.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: geometricDistribution.t('help.body')
         }
 ;

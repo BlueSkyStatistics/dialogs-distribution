@@ -75,7 +75,7 @@ class logisticProbabilities extends baseModal {
         
         this.help = {
             title: logisticProbabilities.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: logisticProbabilities.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: logisticProbabilities.t('help.body')
         }
 ;

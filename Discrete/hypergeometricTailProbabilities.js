@@ -87,7 +87,7 @@ class hypergeometricTailProbabilities extends baseModal {
         
         this.help = {
             title: hypergeometricTailProbabilities.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: hypergeometricTailProbabilities.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: hypergeometricTailProbabilities.t('help.body')
         }
 ;

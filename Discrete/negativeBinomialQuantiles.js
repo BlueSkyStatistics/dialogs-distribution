@@ -75,7 +75,7 @@ class negativeBinomialQuantiles extends baseModal {
         
         this.help = {
             title: negativeBinomialQuantiles.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: negativeBinomialQuantiles.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: negativeBinomialQuantiles.t('help.body')
         }
 ;

@@ -120,7 +120,7 @@ class sampleChisquaredDistribution extends baseModal {
         
         this.help = {
             title: sampleChisquaredDistribution.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: sampleChisquaredDistribution.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: sampleChisquaredDistribution.t('help.body')
         }
 ;

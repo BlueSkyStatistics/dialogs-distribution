@@ -70,7 +70,7 @@ class poissonDistributionPlot extends baseModal {
         
         this.help = {
             title: poissonDistributionPlot.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: poissonDistributionPlot.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: poissonDistributionPlot.t('help.body')
         }
 ;

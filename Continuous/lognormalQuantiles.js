@@ -75,7 +75,7 @@ class lognormalQuantiles extends baseModal {
         
         this.help = {
             title: lognormalQuantiles.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: lognormalQuantiles.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: lognormalQuantiles.t('help.body')
         }
 ;

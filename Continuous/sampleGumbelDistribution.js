@@ -132,7 +132,7 @@ class sampleGumbelDistribution extends baseModal {
         
         this.help = {
             title: sampleGumbelDistribution.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: sampleGumbelDistribution.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: sampleGumbelDistribution.t('help.body')
         }
 ;

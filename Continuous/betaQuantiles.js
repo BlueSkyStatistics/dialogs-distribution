@@ -75,7 +75,7 @@ class betaQuantiles extends baseModal {
         
         this.help = {
             title: betaQuantiles.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: betaQuantiles.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: betaQuantiles.t('help.body')
         }
 ;

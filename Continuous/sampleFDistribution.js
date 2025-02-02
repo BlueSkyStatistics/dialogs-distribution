@@ -132,7 +132,7 @@ class sampleFDistribution extends baseModal {
         
         this.help = {
             title: sampleFDistribution.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: sampleFDistribution.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: sampleFDistribution.t('help.body')
         }
 ;

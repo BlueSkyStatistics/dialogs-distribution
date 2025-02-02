@@ -63,7 +63,7 @@ class geometricQuantiles extends baseModal {
         
         this.help = {
             title: geometricQuantiles.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: geometricQuantiles.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: geometricQuantiles.t('help.body')
         }
 ;

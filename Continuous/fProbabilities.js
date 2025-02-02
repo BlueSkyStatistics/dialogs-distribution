@@ -75,7 +75,7 @@ class fProbabilities extends baseModal {
         
         this.help = {
             title: fProbabilities.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: fProbabilities.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: fProbabilities.t('help.body')
         }
 ;

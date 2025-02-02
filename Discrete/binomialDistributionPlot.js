@@ -83,7 +83,7 @@ class binomialDistributionPlot extends baseModal {
         
         this.help = {
             title: binomialDistributionPlot.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: binomialDistributionPlot.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: binomialDistributionPlot.t('help.body')
         }
 ;

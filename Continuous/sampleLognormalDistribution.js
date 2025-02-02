@@ -132,7 +132,7 @@ class sampleLognormalDistribution extends baseModal {
         
         this.help = {
             title: sampleLognormalDistribution.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: sampleLognormalDistribution.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: sampleLognormalDistribution.t('help.body')
         }
 ;

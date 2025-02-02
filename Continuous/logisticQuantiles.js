@@ -75,7 +75,7 @@ class logisticQuantiles extends baseModal {
         
         this.help = {
             title: logisticQuantiles.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: logisticQuantiles.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: logisticQuantiles.t('help.body')
         }
 ;

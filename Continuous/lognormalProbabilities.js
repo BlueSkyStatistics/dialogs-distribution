@@ -75,7 +75,7 @@ class lognormalProbabilities extends baseModal {
         
         this.help = {
             title: lognormalProbabilities.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: lognormalProbabilities.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: lognormalProbabilities.t('help.body')
         }
 ;

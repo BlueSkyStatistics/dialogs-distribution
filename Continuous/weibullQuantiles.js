@@ -75,7 +75,7 @@ class weibullQuantiles extends baseModal {
         
         this.help = {
             title: weibullQuantiles.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: weibullQuantiles.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: weibullQuantiles.t('help.body')
         }
 ;

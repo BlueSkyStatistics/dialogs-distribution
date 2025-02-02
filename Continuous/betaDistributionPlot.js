@@ -186,7 +186,7 @@ class betaDistributionPlot extends baseModal {
         
         this.help = {
             title: betaDistributionPlot.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: betaDistributionPlot.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: betaDistributionPlot.t('help.body')
         }
 ;

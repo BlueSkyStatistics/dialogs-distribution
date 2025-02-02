@@ -132,7 +132,7 @@ class sampleGammaDistribution extends baseModal {
         
         this.help = {
             title: sampleGammaDistribution.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: sampleGammaDistribution.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: sampleGammaDistribution.t('help.body')
         }
 ;

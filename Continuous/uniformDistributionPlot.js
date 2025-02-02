@@ -177,7 +177,7 @@ class uniformDistributionPlot extends baseModal {
         
         this.help = {
             title: uniformDistributionPlot.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: uniformDistributionPlot.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: uniformDistributionPlot.t('help.body')
         }
 ;

@@ -177,7 +177,7 @@ class gammaDistributionPlot extends baseModal {
         
         this.help = {
             title: gammaDistributionPlot.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: gammaDistributionPlot.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: gammaDistributionPlot.t('help.body')
         }
 ;

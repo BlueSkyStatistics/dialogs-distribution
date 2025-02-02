@@ -75,7 +75,7 @@ class gammaProbabilities extends baseModal {
         
         this.help = {
             title: gammaProbabilities.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: gammaProbabilities.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: gammaProbabilities.t('help.body')
         }
 ;

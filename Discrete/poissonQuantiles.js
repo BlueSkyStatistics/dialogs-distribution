@@ -63,7 +63,7 @@ class poissonQuantiles extends baseModal {
         
         this.help = {
             title: poissonQuantiles.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: poissonQuantiles.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: poissonQuantiles.t('help.body')
         }
 ;

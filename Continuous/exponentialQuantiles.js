@@ -63,7 +63,7 @@ class exponentialQuantiles extends baseModal {
         
         this.help = {
             title: exponentialQuantiles.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: exponentialQuantiles.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: exponentialQuantiles.t('help.body')
         }
 ;

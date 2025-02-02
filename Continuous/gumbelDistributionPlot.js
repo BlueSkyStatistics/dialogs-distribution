@@ -177,7 +177,7 @@ class gumbelDistributionPlot extends baseModal {
         
         this.help = {
             title: gumbelDistributionPlot.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: gumbelDistributionPlot.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: gumbelDistributionPlot.t('help.body')
         }
 ;

@@ -75,7 +75,7 @@ class gumbelQuantiles extends baseModal {
         
         this.help = {
             title: gumbelQuantiles.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: gumbelQuantiles.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: gumbelQuantiles.t('help.body')
         }
 ;

@@ -177,7 +177,7 @@ class logisticDistributionPlot extends baseModal {
         
         this.help = {
             title: logisticDistributionPlot.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: logisticDistributionPlot.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: logisticDistributionPlot.t('help.body')
         }
 ;

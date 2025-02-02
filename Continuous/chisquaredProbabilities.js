@@ -63,7 +63,7 @@ class chisquaredProbabilities extends baseModal {
         
         this.help = {
             title: chisquaredProbabilities.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: chisquaredProbabilities.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: chisquaredProbabilities.t('help.body')
         }
 ;

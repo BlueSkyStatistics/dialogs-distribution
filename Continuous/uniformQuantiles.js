@@ -75,7 +75,7 @@ class uniformQuantiles extends baseModal {
         
         this.help = {
             title: uniformQuantiles.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: uniformQuantiles.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: uniformQuantiles.t('help.body')
         }
 ;

@@ -63,7 +63,7 @@ class chisquaredQuantiles extends baseModal {
         
         this.help = {
             title: chisquaredQuantiles.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: chisquaredQuantiles.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: chisquaredQuantiles.t('help.body')
         }
 ;

@@ -144,7 +144,7 @@ class sampleHypergeometricDistribution extends baseModal {
         
         this.help = {
             title: sampleHypergeometricDistribution.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: sampleHypergeometricDistribution.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: sampleHypergeometricDistribution.t('help.body')
         }
 ;

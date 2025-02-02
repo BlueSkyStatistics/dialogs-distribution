@@ -177,7 +177,7 @@ class cauchyDistributionPlot extends baseModal {
         
         this.help = {
             title: cauchyDistributionPlot.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: cauchyDistributionPlot.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: cauchyDistributionPlot.t('help.body')
         }
 ;

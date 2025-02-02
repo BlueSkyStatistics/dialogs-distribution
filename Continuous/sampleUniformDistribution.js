@@ -132,7 +132,7 @@ class sampleUniformDistribution extends baseModal {
         
         this.help = {
             title: sampleUniformDistribution.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: sampleUniformDistribution.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: sampleUniformDistribution.t('help.body')
         }
 ;

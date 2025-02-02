@@ -63,7 +63,7 @@ class tProbabilities extends baseModal {
         
         this.help = {
             title: tProbabilities.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: tProbabilities.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: tProbabilities.t('help.body')
         }
 ;

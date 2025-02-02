@@ -75,7 +75,7 @@ class uniformProbabilities extends baseModal {
         
         this.help = {
             title: uniformProbabilities.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: uniformProbabilities.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: uniformProbabilities.t('help.body')
         }
 ;

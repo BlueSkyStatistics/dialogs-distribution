@@ -177,7 +177,7 @@ class normalDistributionPlot extends baseModal {
         
         this.help = {
             title: normalDistributionPlot.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: normalDistributionPlot.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: normalDistributionPlot.t('help.body')
         }
 ;

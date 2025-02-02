@@ -177,7 +177,7 @@ class weibullDistributionPlot extends baseModal {
         
         this.help = {
             title: weibullDistributionPlot.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: weibullDistributionPlot.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: weibullDistributionPlot.t('help.body')
         }
 ;

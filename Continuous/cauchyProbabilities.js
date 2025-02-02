@@ -75,7 +75,7 @@ class cauchyProbabilities extends baseModal {
         
         this.help = {
             title: cauchyProbabilities.t('help.title'),
-            r_help: "help(data,package='utils')",
+            r_help: cauchyProbabilities.t('help.r_help'),  //r_help: "help(data,package='utils')",
             body: cauchyProbabilities.t('help.body')
         }
 ;
