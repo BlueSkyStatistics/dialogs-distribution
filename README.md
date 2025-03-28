@@ -1,2 +1,2 @@
 # distribution Dialogs
-BlueSky Statistics Distribution dialogs
+BioStat Prime Distribution dialogs

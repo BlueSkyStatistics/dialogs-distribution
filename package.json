@@ -1,7 +1,7 @@
 {
     "name": "@BlueSkyStatistics/dialogs/distribution",
     "productName": "Distribution dialogs",
-    "description": "BlueSky Statistics Distribution dialogs",
+    "description": "BioStat Prime Distribution dialogs",
     "main": "nav.js",
     "version": "1.0.5",
     "group": "dialogs",
@@ -21,7 +21,7 @@
     "minAppVersion": null,
     "requiredPackages": [],
     "keywords": [],
-    "author": "BlueSky Statistics",
+    "author": "BioStat Prime",
     "scripts": {},
     "dependencies": {
         "squirrelly": "7.9.2"
