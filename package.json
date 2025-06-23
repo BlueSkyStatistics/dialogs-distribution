@@ -3,7 +3,7 @@
     "productName": "Distribution dialogs",
     "description": "BioStat Prime Distribution dialogs",
     "main": "nav.js",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "group": "dialogs",
     "subscriptions": ["BASE (Free Forever)"],
     "moduleMeta": {
