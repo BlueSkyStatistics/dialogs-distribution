@@ -4,14 +4,11 @@
   * allowed without the prior written permission from BlueSky Statistics, LLC.
  */
 
-const {getT} = global.requireFromRoot("localization");
-let t = getT('menutoolbar')
-const nav = () => ({
-    "name": t('distribution_top_level_title'),// {ns: 'menutoolbar'}),
-    "tab": "distribution",
+const nav = {
+    "id": "menu-distribution",
     "buttons": [
         {
-            "name": t('distribution_Beta'),// {ns: 'menutoolbar'}),
+            "id": "menu-distribution-beta",
             "icon": "icon-beta",
             "children": [
                 "./Continuous/betaDistributionPlot",
@@ -21,7 +18,7 @@ const nav = () => ({
             ]
         },
         {
-            "name": t('distribution_Binomial'),// {ns: 'menutoolbar'}),
+            "id": "menu-distribution-binomial",
             "icon": "icon-binary-code",
             "children": [
                 "./Discrete/binomialDistributionPlot",
@@ -32,7 +29,7 @@ const nav = () => ({
             ]
         },                
         {
-            "name": t('distribution_Cauchy'),// {ns: 'menutoolbar'}),
+            "id": "menu-distribution-cauchy",
             "icon": "icon-c",
             "children": [
                 "./Continuous/cauchyDistributionPlot",
@@ -42,7 +39,7 @@ const nav = () => ({
             ]
         },
         {
-            "name": t('distribution_Chi_squared'),// {ns: 'menutoolbar'}),
+            "id": "menu-distribution-chi-squared",
             "icon": "icon-chi_squared",
             "children": [
                 "./Continuous/chisquaredDistributionPlot",
@@ -52,7 +49,7 @@ const nav = () => ({
             ]
         },
         {
-            "name": t('distribution_Exponential'),// {ns: 'menutoolbar'}),
+            "id": "menu-distribution-exponential",
             "icon": "icon-letter-e",
             "children": [
                 "./Continuous/exponentialDistributionPlot",                
@@ -62,7 +59,7 @@ const nav = () => ({
             ]
         },
         {
-            "name": t('distribution_F'),// {ns: 'menutoolbar'}),
+            "id": "menu-distribution-f",
             "icon": "icon-f",
             "children": [
                 "./Continuous/fDistributionPlot",
@@ -72,7 +69,7 @@ const nav = () => ({
             ]
         },
         {
-            "name": t('distribution_Gamma'),// {ns: 'menutoolbar'}),
+            "id": "menu-distribution-gamma",
             "icon": "icon-gamma",
             "children": [
                 "./Continuous/gammaDistributionPlot",
@@ -82,7 +79,7 @@ const nav = () => ({
             ]
         },
         {
-            "name": t('distribution_Geometric'),// {ns: 'menutoolbar'}),
+            "id": "menu-distribution-geometric",
             "icon": "icon-area-chart",
             "children": [
                 "./Discrete/geometricDistribution",
@@ -93,7 +90,7 @@ const nav = () => ({
             ]
         },                
         {
-            "name": t('distribution_Gumbel'),// {ns: 'menutoolbar'}),
+            "id": "menu-distribution-gumbel",
             "icon": "icon-gumbel",
             "children": [
                 "./Continuous/gumbelDistributionPlot",
@@ -103,7 +100,7 @@ const nav = () => ({
             ]
         },
         {
-            "name": t('distribution_Hypergeometric'),// {ns: 'menutoolbar'}),
+            "id": "menu-distribution-hypergeometric",
             "icon": "icon-curve",
             "children": [
                 "./Discrete/hypergeometricDistributionPlot",                
@@ -114,7 +111,7 @@ const nav = () => ({
             ]
         },                 
         {
-            "name": t('distribution_Logistic'),// {ns: 'menutoolbar'}),
+            "id": "menu-distribution-logistic",
             "icon": "icon-logistic_white_comp",
             "children": [
                 "./Continuous/logisticDistributionPlot",                
@@ -124,7 +121,7 @@ const nav = () => ({
             ]
         },
         {
-            "name": t('distribution_Lognormal'),// {ns: 'menutoolbar'}),
+            "id": "menu-distribution-lognormal",
             "icon": "icon-log-normal-distribution",
             "children": [
                 "./Continuous/lognormalDistributionPlot",
@@ -134,7 +131,7 @@ const nav = () => ({
             ]
         },
         {
-            "name": t('distribution_Negative_Binomial'),// {ns: 'menutoolbar'}),
+            "id": "menu-distribution-negativebinomial",
             "icon": "icon-negtive-binary-code",
             "children": [
                 "./Discrete/negativeBinomialDistributionPlot",
@@ -145,7 +142,7 @@ const nav = () => ({
             ]
         },                 
         {
-            "name": t('distribution_Normal'),// {ns: 'menutoolbar'}),
+            "id": "menu-distribution-normal",
             "icon": "icon-gaussian-function",
             "children": [
                 "./Continuous/normalDistributionPlot",
@@ -155,7 +152,7 @@ const nav = () => ({
             ]
         },
         {
-            "name": t('distribution_Poisson'),// {ns: 'menutoolbar'}),
+            "id": "menu-distribution-poisson",
             "icon": "icon-fish",
             "children": [
                 "./Discrete/poissonDistributionPlot",
@@ -166,7 +163,7 @@ const nav = () => ({
             ]
         },
         {
-            "name": t('distribution_t'),// {ns: 'menutoolbar'}),
+            "id": "menu-distribution-t",
             "icon": "icon-tumblr",
             "children": [
                 "./Continuous/tDistributionPlot",
@@ -176,7 +173,7 @@ const nav = () => ({
             ]
         },
         {
-            "name": t('distribution_Uniform'),// {ns: 'menutoolbar'}),
+            "id": "menu-distribution-uniform",
             "icon": "icon-rectangle",
             "children": [
                 "./Continuous/uniformDistributionPlot",
@@ -186,7 +183,7 @@ const nav = () => ({
             ]
         },
         {
-            "name": t('distribution_Weibull'),// {ns: 'menutoolbar'}),
+            "id": "menu-distribution-weibull",
             "icon": "icon-weibull_distribution",
             "children": [
                 "./Continuous/weibullDistributionPlot",
@@ -198,9 +195,9 @@ const nav = () => ({
         
 
     ]           
-})
+}
 
 module.exports = {
-    nav: nav(),
-    render: () => nav()
+    nav: nav,
+    render: () => nav
 }
